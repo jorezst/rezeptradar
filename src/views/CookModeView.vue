@@ -1,15 +1,17 @@
 <template>
   <v-btn> Cooking </v-btn>
+  <CookingMode />
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import CookingMode from "@/components/CookingMode.vue";
 
 // Components
 
 export default defineComponent({
   name: "CookModeView",
 
-  components: {},
+  components: { CookingMode },
 });
 </script>

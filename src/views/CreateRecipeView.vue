@@ -12,6 +12,9 @@ import SelectDishType from "@/components/SelectDishType.vue";
 export default defineComponent({
   name: "CreateRecipeView",
 
-  components: { SelectDishType },
+  components: {SelectDishType},
 });
 </script>
+
+
+
