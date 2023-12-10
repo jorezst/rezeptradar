@@ -17,6 +17,3 @@ export default defineComponent({
   components: { SelectDishType, CreatingSteps },
 });
 </script>
-
-
-
