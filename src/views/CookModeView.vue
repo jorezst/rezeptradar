@@ -1,5 +1,4 @@
 <template>
-  <v-btn> Cooking </v-btn>
   <CookingMode />
 </template>
 

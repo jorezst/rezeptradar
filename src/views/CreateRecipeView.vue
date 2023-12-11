@@ -1,5 +1,4 @@
 <template>
-  <v-btn> Recipe </v-btn>
   <SelectDishType />
   <CreatingSteps />
 </template>
@@ -17,6 +16,3 @@ export default defineComponent({
   components: { SelectDishType, CreatingSteps },
 });
 </script>
-
-
-
