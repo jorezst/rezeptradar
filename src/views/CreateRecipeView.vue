@@ -1,20 +1,20 @@
 <template>
   <SelectDishType />
   <CreatingSteps />
-  <Utensilien />
+  <UtensilienDropdown />
 </template>
 
 <script>
 import { defineComponent } from "vue";
 import SelectDishType from "@/components/SelectDishType.vue";
 import CreatingSteps from "@/components/CreatingSteps.vue";
-import Utensilien from "@/components/Utensilien.vue";
+import UtensilienDropdown from "@/components/UtensilienDropdown.vue";
 
 // Components
 
 export default defineComponent({
   name: "CreateRecipeView",
 
-  components: {Utensilien, SelectDishType, CreatingSteps },
+  components: { UtensilienDropdown, SelectDishType, CreatingSteps },
 });
 </script>

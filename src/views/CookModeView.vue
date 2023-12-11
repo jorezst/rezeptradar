@@ -2,19 +2,11 @@
   <CookingMode />
 </template>
 
-<script setup>
-import { useTheme } from "vuetify";
-
-const theme = useTheme();
-
-function toggleTheme() {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
-}
-</script>
+<script setup></script>
 
 <script>
-import { defineComponent } from "vue";
 import CookingMode from "@/components/CookingMode.vue";
+import { defineComponent } from "vue";
 
 // Components
 
