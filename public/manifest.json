@@ -1,9 +1,0 @@
-{
-  "name": "RezeptRadar",
-  "short_name": "RezeptRadar",
-  "icons": [],
-  "start_url": ".",
-  "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
-}
