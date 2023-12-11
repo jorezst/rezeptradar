@@ -4,6 +4,12 @@ export default {
     return {
       currentStep: 1,
       totalSteps: 4,
+      imagePaths: {
+        1: "./img/Kochmodus/schritt1.png",
+        2: "./img/Kochmodus/schritt1.png",
+        3: "./img/Kochmodus/schritt1.png",
+        4: "./img/Kochmodus/schritt1.png",
+      },
       materials: {
         1: ["Material 1a", "Material 1b"],
         2: ["Material 2a", "Material 2b"],
@@ -44,29 +50,49 @@ export default {
 
 <template>
   <div class="cook-mode-container">
-    <v-btn class="nav-button" @click="prevStep" :disabled="currentStep === 1"
-      ><v-icon>mdi-chevron-left</v-icon></v-btn
-    >
+    <v-btn class="nav-button" @click="prevStep" :disabled="currentStep === 1">
+      <v-icon>mdi-chevron-left</v-icon>
+    </v-btn>
 
     <v-card class="card-container" v-if="currentStep !== null">
-      <v-card-title>{{ getStepLabel(currentStep) }}</v-card-title>
-      <v-card-text>
-        <v-subheader>Materialien:</v-subheader>
-        <ul>
-          <li v-for="(material, index) in materials[currentStep]" :key="index">
-            {{ material }}
-          </li>
-        </ul>
+      <v-card-title class="step-title">{{
+        getStepLabel(currentStep)
+      }}</v-card-title>
 
-        <v-subheader>Zutaten:</v-subheader>
-        <ul>
-          <li
-            v-for="(ingredient, index) in ingredients[currentStep]"
-            :key="index"
-          >
-            {{ ingredient }}
-          </li>
-        </ul>
+      <v-img
+        :src="imagePaths[currentStep]"
+        class="step-image"
+        alt="Step Image"
+      ></v-img>
+
+      <v-divider></v-divider>
+
+      <v-card-text>
+        <div class="ingredients-materials">
+          <div class="ingredients">
+            <v-subheader>Zutaten:</v-subheader>
+            <ul>
+              <li
+                v-for="(ingredient, index) in ingredients[currentStep]"
+                :key="index"
+              >
+                {{ ingredient }}
+              </li>
+            </ul>
+          </div>
+
+          <div class="materials">
+            <v-subheader>Materialien:</v-subheader>
+            <ul>
+              <li
+                v-for="(material, index) in materials[currentStep]"
+                :key="index"
+              >
+                {{ material }}
+              </li>
+            </ul>
+          </div>
+        </div>
 
         <v-subheader>Beschreibung:</v-subheader>
         <p>{{ descriptions[currentStep] }}</p>
@@ -77,8 +103,9 @@ export default {
       class="nav-button"
       @click="nextStep"
       :disabled="currentStep === totalSteps"
-      ><v-icon>mdi-chevron-right</v-icon></v-btn
     >
+      <v-icon>mdi-chevron-right</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -100,23 +127,42 @@ export default {
 .card-container {
   flex-grow: 1;
   margin: 0 20px;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  padding: 20px;
+  overflow: hidden;
 }
 
-.card-container v-card-title {
-  font-size: 18px;
+.step-title {
+  font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
+  color: var(--v-primary-base);
+}
+
+.step-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+
+.v-divider {
+  background-color: var(--v-primary-base);
+}
+
+.ingredients-materials {
+  display: flex;
+}
+
+.ingredients,
+.materials {
+  flex: 1;
 }
 
 .card-container v-subheader {
   font-size: 16px;
   margin-top: 10px;
   font-weight: bold;
-  color: #333;
+  color: var(--v-text-dense);
 }
 
 .card-container ul {
@@ -133,6 +179,6 @@ export default {
 .card-container p {
   font-size: 14px;
   margin-top: 10px;
-  color: #555;
+  color: var(--v-text);
 }
 </style>
