@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <TopNavbar />
     <v-main>
       <router-view />
     </v-main>
@@ -9,10 +10,11 @@
 
 <script>
 import BottomNavbar from "@/components/BottomNavbar.vue";
+import TopNavbar from "@/components/TopNavbar.vue";
 
 export default {
   name: "App",
-  components: { BottomNavbar },
+  components: { TopNavbar, BottomNavbar },
   data: () => ({
     //
   }),

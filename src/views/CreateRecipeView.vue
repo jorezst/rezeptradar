@@ -1,5 +1,4 @@
 <template>
-  <v-btn> Recipe </v-btn>
   <SelectDishType />
   <CreatingSteps />
 </template>

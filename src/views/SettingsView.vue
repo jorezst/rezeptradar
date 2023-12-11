@@ -1,5 +1,5 @@
 <template>
-  <CookingMode />
+  <v-btn @click="toggleTheme">toggle theme</v-btn>
 </template>
 
 <script setup>
@@ -8,19 +8,21 @@ import { useTheme } from "vuetify";
 const theme = useTheme();
 
 function toggleTheme() {
-  theme.global.name.value = theme.global.current.value.dark ? "light" : "dark";
+  theme.global.name.value = theme.global.current.value.dark
+    ? "myCustomLightTheme"
+    : "myCustomDarkTheme";
 }
 </script>
 
 <script>
 import { defineComponent } from "vue";
-import CookingMode from "@/components/CookingMode.vue";
 
 // Components
 
 export default defineComponent({
-  name: "CookModeView",
-
-  components: { CookingMode },
+  name: "SettingsView",
+  components: {},
 });
 </script>
+
+<style scoped></style>
