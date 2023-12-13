@@ -141,6 +141,16 @@ export default {
   display: none;
 }
 
+.card-container {
+  width: 100%;
+  flex-grow: 1;
+  margin: 0 20px;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
 /* Media Query für Desktop-Ansicht */
 @media (min-width: 768px) {
   .cook-mode-container {
@@ -182,15 +192,6 @@ export default {
   align-items: center;
   justify-content: center;
   font-size: 20px;
-}
-
-.card-container {
-  flex-grow: 1;
-  margin: 0 20px;
-  border-radius: 8px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
 }
 
 .step-title {
@@ -244,12 +245,14 @@ export default {
 
 .scrollable-description {
   overflow-y: auto;
-  max-height: 200px;
+  max-height: 100px;
 }
 
 .card-container p {
   font-size: 14px;
   margin-top: 10px;
+  margin-bottom: 10px; /* Füge diese Zeile hinzu, um Platz für Scrollleiste zu lassen */
   color: var(--v-text);
+  overflow-y: auto;
 }
 </style>
