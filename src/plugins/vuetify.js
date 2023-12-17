@@ -10,32 +10,30 @@ import { createVuetify } from "vuetify";
 const myCustomLightTheme = {
   dark: false,
   colors: {
-    background: "#FFFFFF",
-    surface: "#FFFFFF",
-    primary: "#6200EE",
-    "primary-darken-1": "#3700B3",
-    secondary: "#03DAC6",
-    "secondary-darken-1": "#018786",
-    error: "#B00020",
-    info: "#2196F3",
-    success: "#4CAF50",
-    warning: "#FB8C00",
+    text: "#0a0905",
+    background: "#ffffff",
+    "background-darken-1": "#f7f7f7",
+    primary: "#ffa200",
+    "primary-darken-1": "#e69100",
+    secondary: "#abd3a6",
+    "secondary-darken-1": "#8ec487",
+    accent: "#76bc8b",
+    "accent-darken-1": "#65b37d",
   },
 };
 
 const myCustomDarkTheme = {
   dark: true, // Set dark to true for a dark theme
   colors: {
-    background: "#121212", // Dark background color
-    surface: "#121212", // Dark surface color
-    primary: "#BB86FC", // Adjusted primary color for dark theme
-    "primary-darken-1": "#3700B3", // Keep darken variant
-    secondary: "#03DAC6",
-    "secondary-darken-1": "#018786",
-    error: "#CF6679", // Adjusted error color for dark theme
-    info: "#BB86FC", // Use primary color for info in dark theme
-    success: "#4CAF50",
-    warning: "#FFC107", // Adjusted warning color for dark theme
+    text: "#faf9f5",
+    background: "#212121",
+    "background-darken-1": "#080808",
+    primary: "#ffa200",
+    "primary-darken-1": "#e69100",
+    secondary: "#31592c",
+    "secondary-darken-1": "#264422",
+    accent: "#438958",
+    "accent-darken-1": "#326742",
   },
 };
 

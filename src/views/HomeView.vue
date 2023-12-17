@@ -1,5 +1,5 @@
 <template>
-  <v-btn>Home</v-btn>
+  <v-btn color="primary">Home</v-btn>
 </template>
 
 <script>
