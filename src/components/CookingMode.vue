@@ -3,15 +3,16 @@ import Hammer from "hammerjs";
 export default {
   data() {
     return {
-      currentStep: 1,
+      currentStep: 0,
       totalSteps: 4,
       imagePaths: {
+        0: "./img/Kochmodus/schritt1.png",
         1: "./img/Kochmodus/schritt1.png",
         2: "./img/Kochmodus/schritt1.png",
         3: "./img/Kochmodus/schritt1.png",
         4: "./img/Kochmodus/schritt1.png",
       },
-      materials: {
+      utensils: {
         1: ["Material 1a", "Material 1b"],
         2: ["Material 2a", "Material 2b"],
         3: ["Material 3a", "Material 3b"],
@@ -27,13 +28,19 @@ export default {
         1: "Beschreibung für Schritt 1.",
         2: "Beschreibung für Schritt 2.",
         3: "Beschreibung für Schritt 3.",
-        4: "Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.",
+        4: "Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.",
+      },
+      overview: {
+        time: "30 Minuten",
+        materials: ["Allgemeines Material 1", "Allgemeines Material 2"],
+        ingredients: ["Allgemeine Zutat 1", "Allgemeine Zutat 2"],
+        description: "Übersicht über das Rezept.",
       },
     };
   },
   methods: {
     getStepLabel(step) {
-      return `Schritt ${step}`;
+      return step === 0 ? "Übersicht" : `Schritt ${step}`;
     },
     nextStep() {
       if (this.currentStep < this.totalSteps) {
@@ -41,7 +48,7 @@ export default {
       }
     },
     prevStep() {
-      if (this.currentStep > 1) {
+      if (this.currentStep > 0) {
         this.currentStep--;
       }
     },
@@ -91,8 +98,25 @@ export default {
 
       <v-divider class="divider"></v-divider>
 
-      <v-card-text class="card-text">
-        <div class="ingredients-materials">
+      <v-card-text class="card-text" v-if="currentStep === 0">
+        <p><strong>Benötigte Zeit:</strong> {{ overview.time }}</p>
+        <p><strong>Materialien:</strong></p>
+        <ul>
+          <li v-for="(material, index) in overview.materials" :key="index">
+            {{ material }}
+          </li>
+        </ul>
+        <p><strong>Zutaten:</strong></p>
+        <ul>
+          <li v-for="(ingredient, index) in overview.ingredients" :key="index">
+            {{ ingredient }}
+          </li>
+        </ul>
+        <p>{{ overview.description }}</p>
+      </v-card-text>
+
+      <v-card-text class="card-text" v-else>
+        <div class="ingredients-utensils">
           <div class="ingredients">
             <v-subheader>Zutaten:</v-subheader>
             <ul>
@@ -105,21 +129,21 @@ export default {
             </ul>
           </div>
 
-          <div class="materials">
-            <v-subheader>Materialien:</v-subheader>
+          <div class="utensils">
+            <v-subheader>Utensilien:</v-subheader>
             <ul>
               <li
-                v-for="(material, index) in materials[currentStep]"
+                v-for="(utensil, index) in utensils[currentStep]"
                 :key="index"
               >
-                {{ material }}
+                {{ utensil }}
               </li>
             </ul>
           </div>
         </div>
 
         <v-subheader>Beschreibung:</v-subheader>
-        <div class="scrollable-description">
+        <div>
           <p>{{ descriptions[currentStep] }}</p>
         </div>
       </v-card-text>
@@ -129,12 +153,11 @@ export default {
 
 <style scoped>
 .cook-mode-container {
-  height: calc(100vh - 64px - 56px - 40px);
+  height: calc(100vh - var(--v-layout-top) - var(--v-layout-bottom) - 40px);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  padding: 20px;
 }
 
 .desktop-buttons {
@@ -144,43 +167,13 @@ export default {
 .card-container {
   width: 100%;
   flex-grow: 1;
+  padding: 20px;
   margin: 0 20px;
   border-radius: 8px;
-  overflow: hidden;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-}
-
-/* Media Query für Desktop-Ansicht */
-@media (min-width: 768px) {
-  .cook-mode-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card-container {
-    width: calc(100% - 40px - 120px);
-  }
-
-  .desktop-buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-    position: absolute;
-    padding: 20px;
-  }
-
-  .desktop-buttons .nav-button {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    min-width: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-  }
+  border: none !important;
 }
 
 .nav-button {
@@ -212,12 +205,12 @@ export default {
   background-color: var(--v-primary-base);
 }
 
-.ingredients-materials {
+.ingredients-utensils {
   display: flex;
 }
 
 .ingredients,
-.materials {
+.utensils {
   flex: 1;
 }
 
@@ -243,16 +236,56 @@ export default {
   padding: 10px;
 }
 
-.scrollable-description {
-  overflow-y: auto;
-  max-height: 100px;
-}
-
 .card-container p {
   font-size: 14px;
   margin-top: 10px;
-  margin-bottom: 10px; /* Füge diese Zeile hinzu, um Platz für Scrollleiste zu lassen */
+  margin-bottom: 10px;
   color: var(--v-text);
-  overflow-y: auto;
+}
+
+/* Media Query für Mobile-Ansicht */
+@media (max-width: 768px) {
+  .cook-mode-container {
+    margin: 0;
+    padding: 0;
+  }
+
+  .card-container.v-card--variant-elevated {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+/* Media Query für Desktop-Ansicht */
+@media (min-width: 768px) {
+  .cook-mode-container {
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+  }
+
+  .card-container {
+    width: calc(100% - 40px - 120px);
+  }
+
+  .desktop-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    padding: 20px;
+  }
+
+  .desktop-buttons .nav-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
 }
 </style>
