@@ -7,6 +7,11 @@ export const useRecipeStore = defineStore({
     recipe: {
       title: 'Leckeres Rezept',
       ingredients: ['Kartoffel', 'Wasser', 'Salz'],
+      utensilien:['Topf', 'Kochlöffel'],
+      schritte:{
+          schritt1:'Wasser mit dem Salz und den Kartoffeln zum Kochen bringen',
+          schritt2:'Nach 25 min sind die Kartoffeln servierbereit',
+      },
     },
   }),
 });
