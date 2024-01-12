@@ -104,7 +104,7 @@ export default {
 
       <v-card-text class="card-text" v-if="currentStep === 0">
         <p><strong>Benötigte Zeit:</strong> {{ overview.time }}</p>
-        <p><strong>Materialien:</strong></p>
+        <p><strong>Utensilien:</strong></p>
         <ul>
           <li v-for="(material, index) in overview.materials" :key="index">
             {{ material }}

@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <v-btn>Search</v-btn>
+  <v-btn>Suche</v-btn>
 </template>
 
 <style scoped></style>
