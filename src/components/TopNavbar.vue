@@ -38,7 +38,7 @@ export default {
     },
     goToSettings() {
       // Add logic to navigate to the /Settings site
-      this.$router.push("/Settings");
+      this.$router.push("/Einstellungen");
     },
   },
   data: () => ({

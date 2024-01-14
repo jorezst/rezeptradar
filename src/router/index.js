@@ -2,9 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CreateRecipeView from "../views/CreateRecipeView.vue";
 import CookModeView from "../views/CookModeView.vue";
-import OverviewRecipesView from "@/views/OverviewRecipesView.vue";
 import SettingsView from "@/views/SettingsView.vue";
-import RecipeSearchView from "@/views/RecipeSearchView.vue";
 
 const routes = [
   {
@@ -13,29 +11,19 @@ const routes = [
     component: HomeView,
   },
   {
-    path: "/createRecipe",
+    path: "/Rezept Anlegen",
     name: "createRecipe",
     component: CreateRecipeView,
   },
   {
-    path: "/cookMode",
+    path: "/Kochmodus",
     name: "cookMode",
     component: CookModeView,
   },
   {
-    path: "/recipeOverview",
-    name: "recipeOveriew",
-    component: OverviewRecipesView,
-  },
-  {
-    path: "/Settings",
+    path: "/Einstellungen",
     name: "Settings",
     component: SettingsView,
-  },
-  {
-    path: "/Search",
-    name: "Search",
-    component: RecipeSearchView,
   },
 ];
 

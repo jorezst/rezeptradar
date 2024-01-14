@@ -8,12 +8,12 @@
         <span>Home</span>
       </v-btn>
 
-      <v-btn class="nav-item" to="/cookMode">
+      <v-btn class="nav-item" to="/Kochmodus">
         <v-icon>mdi-chef-hat</v-icon>
         <span>Kochmodus</span>
       </v-btn>
 
-      <v-btn class="nav-item" to="/createRecipe">
+      <v-btn class="nav-item" to="/Rezept anlegen">
         <v-icon>mdi-plus</v-icon>
         <span>Hinzufügen</span>
       </v-btn>
