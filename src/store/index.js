@@ -1,13 +1,35 @@
 import { defineStore } from "pinia";
+import { recipes } from "@/store/data/recipes";
 
-export const useCounterStore = defineStore("counter", {
-  state: () => ({ count: 0 }),
-  getters: {
-    double: (state) => state.count * 2,
+export default defineStore({
+  state: {
+    currentRecipe: {},
+    currentSearchValue: "",
+    currentCategories: [],
+    recipes: recipes,
+    loadedItems: 4,
   },
-  actions: {
-    increment() {
-      this.count++;
+  mutations: {
+    loadSearchValue(state, payload) {
+      state.currentSearchValue = payload;
     },
+    setCurrentCategories(state, payload) {
+      state.currentCategories = payload;
+    },
+    incrementLoadedItems(state, payload) {
+      state.loadedItems += payload;
+    },
+    addNewRecipe(state, payload) {
+      state.recipes = [...state.recipes, payload];
+    },
+  },
+  actions: {},
+  modules: {
+    setCurrentCount(state, payload) {
+      state.currentRecipe = payload;
+    },
+  },
+  getters: {
+    getCurrentRecipes: (state) => state.recipes,
   },
 });
