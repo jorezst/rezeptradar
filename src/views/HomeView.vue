@@ -10,8 +10,7 @@ import { defineComponent } from "vue";
 // Components
 
 export default defineComponent({
-    name: "HomeView",
-    components: { ProbeRezept }
-},
-);
+  name: "HomeView",
+  components: { ProbeRezept },
+});
 </script>
