@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="toggleTheme">toggle theme</v-btn>
+  <v-btn @click="toggleTheme">Theme umschalten</v-btn>
 </template>
 
 <script setup>

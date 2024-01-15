@@ -1,29 +1,30 @@
-<script setup></script>
-
 <template>
   <v-container>
     <v-bottom-navigation :elevation="0" background-color="color">
-      <v-btn value="home" to="/">
+      <v-btn class="nav-item" value="home" to="/">
         <v-icon>mdi-home</v-icon>
         <span>Home</span>
       </v-btn>
 
-      <v-btn value="search" color="primary" to="/Search">
-        <v-icon>mdi-magnify</v-icon>
-        <span>Search</span>
-      </v-btn>
-
-      <v-btn value="cooking-mode" to="/cookMode">
+      <v-btn class="nav-item" to="/Kochmodus">
         <v-icon>mdi-chef-hat</v-icon>
-        <span>Cooking mode</span>
+        <span>Kochmodus</span>
       </v-btn>
 
-      <v-btn value="add" to="/createRecipe">
+      <v-btn class="nav-item" to="/Rezept anlegen">
         <v-icon>mdi-plus</v-icon>
-        <span>Add</span>
+        <span>Hinzufügen</span>
       </v-btn>
     </v-bottom-navigation>
   </v-container>
 </template>
 
-<style scoped></style>
+<style scoped>
+.nav-item {
+  flex: 1; /* Distribute available space equally among items */
+  min-width: 0; /* Allow items to shrink beyond their content width */
+  text-align: center; /* Center text within the button */
+}
+</style>
+
+<script></script>

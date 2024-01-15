@@ -1,15 +1,15 @@
 <template>
-  <v-btn color="primary">Home</v-btn>
+  <RecipesComponent />
 </template>
 
 <script>
-//import ProbeRezept from "@/components/ProbeRezept.vue";
+import RecipesComponent from "@/components/RecipesComponent.vue";
 import { defineComponent } from "vue";
 
 // Components
 
 export default defineComponent({
   name: "HomeView",
-  //components: { ProbeRezept },
+  components: { RecipesComponent },
 });
 </script>

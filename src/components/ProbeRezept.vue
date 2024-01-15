@@ -1,5 +1,5 @@
 <template>
-    <v-card class="mx-auto" width="50%">
+  <v-card class="mx-auto" width="50%">
     <div>
       <h1>{{ recipe.title }}</h1>
       <h3>Lebensmittel</h3>
@@ -22,25 +22,25 @@
       </ul>
       <!--<div>{{ recipe.schritte }}</div>-->
     </div>
-    </v-card>
-  </template>
-  
-  <script>
-  import { ref, onMounted } from 'vue';
-  import { useRecipeStore } from '@/stores/ProbeRezept';
-  
-  export default {
-    name: 'RecipeView',
-    setup() {
-      const recipeStore = useRecipeStore();
-      const recipe = ref(recipeStore.recipe);
-  
-      onMounted(() => {
-        // Lade die Rezeptdaten beim Laden der Komponente
-        recipe.value = recipeStore.recipe;
-      });
-  
-      return { recipe };
-    },
-  };
-  </script>
+  </v-card>
+</template>
+
+<script>
+import { ref, onMounted } from "vue";
+import { useRecipeStore } from "@/stores/ProbeRezept";
+
+export default {
+  name: "RecipeView",
+  setup() {
+    const recipeStore = useRecipeStore();
+    const recipe = ref(recipeStore.recipe);
+
+    onMounted(() => {
+      // Lade die Rezeptdaten beim Laden der Komponente
+      recipe.value = recipeStore.recipe;
+    });
+
+    return { recipe };
+  },
+};
+</script>
