@@ -1,4 +1,12 @@
-<script setup></script>
+<script setup>
+import { useRoute } from "vue-router";
+import { computed } from "vue";
+
+const route = useRoute();
+
+// You can also use a computed property if the title needs to be reactive
+const pageTitle = computed(() => route.meta.title || "Default Title");
+</script>
 
 <template>
   <v-app-bar app :elevation="0" color="background">
@@ -7,20 +15,8 @@
       <v-icon>mdi-arrow-left</v-icon>
     </v-app-bar-nav-icon>
 
-    <!-- Search Bar with Search Icon -->
-    <v-autocomplete
-      :items="items"
-      color="primary"
-      auto-select-first
-      class="flex-full-width"
-      density="comfortable"
-      menu-icon=""
-      placeholder="Rezepte Suchen"
-      prepend-inner-icon="mdi-magnify"
-      rounded
-      theme="myCustomLightTheme"
-      variant="outlined"
-    ></v-autocomplete>
+    <!-- Site Title -->
+    <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
 
     <!-- Settings icon -->
     <v-app-bar-nav-icon icon class="settings-icon" @click="goToSettings">
@@ -41,26 +37,6 @@ export default {
       this.$router.push("/Einstellungen");
     },
   },
-  data: () => ({
-    dialog: false,
-    items: [
-      {
-        title: "test1",
-      },
-      {
-        title: "test2",
-      },
-      {
-        title: "test3",
-      },
-      {
-        title: "test4",
-      },
-      {
-        title: "test5",
-      },
-    ],
-  }),
 };
 </script>
 
