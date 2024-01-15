@@ -1,5 +1,4 @@
 <template>
-  <v-btn>Home</v-btn>
   <ProbeRezept />
 </template>
 

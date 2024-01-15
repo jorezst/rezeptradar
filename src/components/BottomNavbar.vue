@@ -1,5 +1,3 @@
-<script setup></script>
-
 <template>
   <v-container>
     <v-bottom-navigation :elevation="0" background-color="color">
@@ -28,3 +26,5 @@
   text-align: center; /* Center text within the button */
 }
 </style>
+
+<script></script>
