@@ -2,13 +2,13 @@
 
 <template>
   <v-container>
-    <v-bottom-navigation :elevation="0" grow>
+    <v-bottom-navigation :elevation="0" background-color="color">
       <v-btn value="home" to="/">
         <v-icon>mdi-home</v-icon>
         <span>Home</span>
       </v-btn>
 
-      <v-btn value="search" to="/Search">
+      <v-btn value="search" color="primary" to="/Search">
         <v-icon>mdi-magnify</v-icon>
         <span>Search</span>
       </v-btn>

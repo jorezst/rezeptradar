@@ -1,4 +1,5 @@
 <script>
+import Hammer from "hammerjs";
 export default {
   data() {
     return {
@@ -26,7 +27,7 @@ export default {
         1: "Beschreibung für Schritt 1.",
         2: "Beschreibung für Schritt 2.",
         3: "Beschreibung für Schritt 3.",
-        4: "Beschreibung für Schritt 4.",
+        4: "Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.Beschreibung für Schritt 4.",
       },
     };
   },
@@ -44,15 +45,38 @@ export default {
         this.currentStep--;
       }
     },
+    handleSwipe(direction) {
+      if (direction === "left") {
+        this.nextStep();
+      } else if (direction === "right") {
+        this.prevStep();
+      }
+    },
+  },
+  mounted() {
+    const el = this.$el;
+    const hammer = new Hammer(el);
+    hammer.on("swiperight", () => this.handleSwipe("right"));
+    hammer.on("swipeleft", () => this.handleSwipe("left"));
   },
 };
 </script>
 
 <template>
-  <div class="cook-mode-container">
-    <v-btn class="nav-button" @click="prevStep" :disabled="currentStep === 1">
-      <v-icon>mdi-chevron-left</v-icon>
-    </v-btn>
+  <div class="cook-mode-container" v-swipe="handleSwipe">
+    <div class="desktop-buttons">
+      <v-btn class="nav-button" @click="prevStep" :disabled="currentStep === 1">
+        <v-icon>mdi-chevron-left</v-icon>
+      </v-btn>
+
+      <v-btn
+        class="nav-button"
+        @click="nextStep"
+        :disabled="currentStep === totalSteps"
+      >
+        <v-icon>mdi-chevron-right</v-icon>
+      </v-btn>
+    </div>
 
     <v-card class="card-container" v-if="currentStep !== null">
       <v-card-title class="step-title">{{
@@ -65,9 +89,9 @@ export default {
         alt="Step Image"
       ></v-img>
 
-      <v-divider></v-divider>
+      <v-divider class="divider"></v-divider>
 
-      <v-card-text>
+      <v-card-text class="card-text">
         <div class="ingredients-materials">
           <div class="ingredients">
             <v-subheader>Zutaten:</v-subheader>
@@ -95,40 +119,79 @@ export default {
         </div>
 
         <v-subheader>Beschreibung:</v-subheader>
-        <p>{{ descriptions[currentStep] }}</p>
+        <div class="scrollable-description">
+          <p>{{ descriptions[currentStep] }}</p>
+        </div>
       </v-card-text>
     </v-card>
-
-    <v-btn
-      class="nav-button"
-      @click="nextStep"
-      :disabled="currentStep === totalSteps"
-    >
-      <v-icon>mdi-chevron-right</v-icon>
-    </v-btn>
   </div>
 </template>
 
 <style scoped>
 .cook-mode-container {
+  height: calc(100vh - 64px - 56px - 40px);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   padding: 20px;
 }
 
-.nav-button {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  min-width: 0;
+.desktop-buttons {
+  display: none;
 }
 
 .card-container {
+  width: 100%;
   flex-grow: 1;
   margin: 0 20px;
   border-radius: 8px;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Media Query für Desktop-Ansicht */
+@media (min-width: 768px) {
+  .cook-mode-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-container {
+    width: calc(100% - 40px - 120px);
+  }
+
+  .desktop-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: absolute;
+    padding: 20px;
+  }
+
+  .desktop-buttons .nav-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+  }
+}
+
+.nav-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
 }
 
 .step-title {
@@ -145,7 +208,7 @@ export default {
   border-radius: 8px 8px 0 0;
 }
 
-.v-divider {
+.divider {
   background-color: var(--v-primary-base);
 }
 
@@ -176,9 +239,20 @@ export default {
   margin-bottom: 5px;
 }
 
+.card-text {
+  padding: 10px;
+}
+
+.scrollable-description {
+  overflow-y: auto;
+  max-height: 100px;
+}
+
 .card-container p {
   font-size: 14px;
   margin-top: 10px;
+  margin-bottom: 10px; /* Füge diese Zeile hinzu, um Platz für Scrollleiste zu lassen */
   color: var(--v-text);
+  overflow-y: auto;
 }
 </style>

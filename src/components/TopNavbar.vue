@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <v-app-bar app :elevation="0">
+  <v-app-bar app :elevation="0" color="background">
     <v-app-bar-nav-icon @click.stop="toggleSidebar" />
     <v-spacer></v-spacer>
     <v-app-bar-nav-icon icon class="settings-icon" to="/Settings">
