@@ -4,6 +4,7 @@ import CreateRecipeView from "../views/CreateRecipeView.vue";
 import CookModeView from "../views/CookModeView.vue";
 import SettingsView from "../views/SettingsView.vue";
 import DetailedRecipeView from "../views/DetailedRecipeView.vue";
+import recipeStepsView from "@/views/recipeStepsView.vue";
 
 const routes = [
   {
@@ -34,6 +35,13 @@ const routes = [
     path: "/recipe/:recipeName", // :recipeName is a dynamic segment
     name: "detailedRecipe",
     component: DetailedRecipeView,
+    props: true, // This allows the route to pass the dynamic segment as a prop to the component
+    meta: { title: "Kochmodus" },
+  },
+  {
+    path: "/recipeSteps/:recipeName", // :recipeName is a dynamic segment
+    name: "recipeSteps",
+    component: recipeStepsView,
     props: true, // This allows the route to pass the dynamic segment as a prop to the component
     meta: { title: "Kochmodus" },
   },
