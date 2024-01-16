@@ -1,7 +1,7 @@
 <template>
   <v-container v-if="recipe">
     <v-row>
-      <v-col cols="12">
+      <v-col>
         <v-img
           :src="recipe.mainImage"
           aspect-ratio="1.5"
@@ -17,18 +17,12 @@
             >{{ category }}</v-chip
           >
         </v-chip-group>
-        <v-btn
-          class="fixed-button rounded-pill"
-          color="primary"
-          @click="goToRecipeSteps(recipe.name)"
-          >Steps</v-btn
-        >
       </v-col>
     </v-row>
 
     <!-- Portion Selector -->
-    <v-row class="mb-4">
-      <v-col cols="12">
+    <v-row>
+      <v-col>
         <h4>Portionsgröße</h4>
         <v-slider
           color="primary"
@@ -38,12 +32,11 @@
           step="1"
           thumb-label
           always-dirty
-          class="mt-3"
         ></v-slider>
       </v-col>
     </v-row>
-    <v-row class="mb-4">
-      <v-col cols="12" md="6">
+    <v-row>
+      <v-col>
         <v-card variant="tonal" class="rounded-xl">
           <v-card-title>Zutaten für {{ portionCount }} Portionen </v-card-title>
           <v-list density="" rounded>
@@ -60,7 +53,7 @@
         </v-card>
       </v-col>
 
-      <v-col cols="12" md="6">
+      <v-col>
         <v-card variant="tonal" class="rounded-xl">
           <v-card-title>Utensilien</v-card-title>
           <v-list density="">
@@ -71,6 +64,13 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-btn
+      class="fixed-button rounded-pill"
+      color="primary"
+      width="110px"
+      @click="goToRecipeSteps(recipe.name)"
+      >Schritte</v-btn
+    >
   </v-container>
   <v-container v-else>
     <p>Recipe not found.</p>
