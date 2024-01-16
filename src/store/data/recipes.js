@@ -198,5 +198,11 @@ export const recipes = [
         image: "./img/BBQ_Burritos/Recipes/step3.png",
       },
     ],
+
+    actions: {
+      setRecipeName(name) {
+        this.recipeName = name;
+      },
+    },
   },
 ];
