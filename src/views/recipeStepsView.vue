@@ -1,21 +1,24 @@
 <template>
   <v-container v-if="recipe">
-    <!-- Steps displayed one after another using Vuetify components -->
-    <v-row class="mb-4" v-for="(step, index) in recipe.steps" :key="index">
-      <v-card class="rounded-xl">
-        <v-col cols="12">
-          <v-img
-            :src="step.image"
-            aspect-ratio="1.5"
-            class="mb-2 rounded-xl"
-          ></v-img>
-          <p>{{ step.description }}</p>
-        </v-col></v-card
-      >
+    <v-row>
+      <v-col v-for="(step, index) in recipe.steps" :key="index" cols="12">
+        <v-card variant="tonal" class="rounded-xl">
+          <v-card-text
+            class="step-number-overlay d-flex align-center justify-center"
+          >
+            {{ index + 1 }}
+          </v-card-text>
+          <v-img :src="step.image" aspect-ratio="1.5"></v-img>
+          <v-card-text class="description-text">{{
+            step.description
+          }}</v-card-text>
+        </v-card>
+      </v-col>
     </v-row>
     <v-btn
       class="fixed-button rounded-pill"
       color="primary"
+      width="110px"
       @click="goToRecipe(recipe.name)"
       >Übersicht</v-btn
     >
@@ -47,5 +50,19 @@ export default {
   right: 20px; /* 20px from the right */
   z-index: 1000; /* High z-index to ensure it's above other content */
   /* Additional styling for the button (size, color, etc.) */
+}
+.step-number-overlay {
+  position: absolute;
+  top: 10px; /* Adjust as needed */
+  left: 10px; /* Adjust as needed */
+  z-index: 1; /* Ensure it's above the image */
+  background-color: #ffa200; /* Background color */
+  border-radius: 50%; /* Round shape */
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  font-size: 18px;
+}
+.description-text {
+  white-space: pre-line; /* or pre-wrap */
 }
 </style>
