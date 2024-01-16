@@ -1,6 +1,6 @@
 <template>
   <v-row class="search-bar">
-    <v-col cols="12">
+    <v-col>
       <v-text-field
         bg-color="background"
         color="primary"
@@ -8,7 +8,6 @@
         rounded
         v-model="searchQuery"
         label="Rezepte suchen"
-        clearable
         @input="updateSearch"
       ></v-text-field>
     </v-col>

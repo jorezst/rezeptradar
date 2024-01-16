@@ -4,7 +4,6 @@ import { computed } from "vue";
 
 const route = useRoute();
 
-// You can also use a computed property if the title needs to be reactive
 const pageTitle = computed(() => route.meta.title || "Default Title");
 </script>
 
