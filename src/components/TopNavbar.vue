@@ -10,23 +10,34 @@ const pageTitle = computed(() => route.meta.title || "Default Title");
 
 <template>
   <v-app-bar app :elevation="0" color="background">
-    <!-- Back Arrow -->
-    <v-app-bar-nav-icon icon @click="goBack">
+    <!-- Back Arrow Icon -->
+    <v-btn icon @click="goBack">
       <v-icon>mdi-arrow-left</v-icon>
-    </v-app-bar-nav-icon>
+    </v-btn>
 
-    <!-- Site Title -->
-    <v-toolbar-title>{{ pageTitle }}</v-toolbar-title>
+    <!-- Page Title -->
+    <v-toolbar-title class="text-center"> {{ pageTitle }} </v-toolbar-title>
 
-    <!-- Settings icon -->
-    <v-app-bar-nav-icon icon class="settings-icon" @click="goToSettings">
+    <!-- Settings Icon -->
+    <v-btn icon @click="goToSettings">
       <v-icon>mdi-cog</v-icon>
-    </v-app-bar-nav-icon>
+    </v-btn>
   </v-app-bar>
 </template>
 
 <script>
 export default {
+  computed: {
+    titleStyle() {
+      const maxWidth = window.innerWidth - 48 * 2 - 40; // 40px for some additional padding
+      return {
+        "max-width": `${maxWidth}px`,
+        overflow: "hidden",
+        "text-overflow": "ellipsis",
+        "white-space": "nowrap",
+      };
+    },
+  },
   methods: {
     goBack() {
       // Add logic to go back to the previous site
@@ -41,10 +52,9 @@ export default {
 </script>
 
 <style>
-.flex-full-width {
-  margin-top: 20px;
-}
-.settings-icon {
-  margin-right: 16px; /* Adjust the margin as needed */
+.text-center {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.5em;
 }
 </style>
