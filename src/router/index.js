@@ -2,7 +2,8 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CreateRecipeView from "../views/CreateRecipeView.vue";
 import CookModeView from "../views/CookModeView.vue";
-import SettingsView from "@/views/SettingsView.vue";
+import SettingsView from "../views/SettingsView.vue";
+import DetailedRecipeView from "../views/DetailedRecipeView.vue";
 
 const routes = [
   {
@@ -28,6 +29,13 @@ const routes = [
     name: "Settings",
     component: SettingsView,
     meta: { title: "Einstellungen" },
+  },
+  {
+    path: "/recipe/:recipeName", // :recipeName is a dynamic segment
+    name: "detailedRecipe",
+    component: DetailedRecipeView,
+    props: true, // This allows the route to pass the dynamic segment as a prop to the component
+    meta: { title: "Kochmodus" },
   },
 ];
 
