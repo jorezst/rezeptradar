@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-bottom-navigation :elevation="0" background-color="color">
+    <v-bottom-navigation :elevation="24" color="primary">
       <v-btn class="nav-item" value="home" to="/">
         <v-icon>mdi-home</v-icon>
         <span>Home</span>
