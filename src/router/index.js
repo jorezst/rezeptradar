@@ -36,14 +36,14 @@ const routes = [
     name: "detailedRecipe",
     component: DetailedRecipeView,
     props: true, // This allows the route to pass the dynamic segment as a prop to the component
-    meta: { title: "Kochmodus" },
+    meta: { title: "Rezeptdetails" },
   },
   {
     path: "/recipeSteps/:recipeName", // :recipeName is a dynamic segment
     name: "recipeSteps",
     component: recipeStepsView,
     props: true, // This allows the route to pass the dynamic segment as a prop to the component
-    meta: { title: "Kochmodus" },
+    meta: { title: "Rezeptschritte" },
   },
 ];
 
