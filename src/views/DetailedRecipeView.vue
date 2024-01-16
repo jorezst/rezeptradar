@@ -8,7 +8,7 @@
           class="mb-4 rounded-xl"
         ></v-img>
         <h2>{{ recipe.name }}</h2>
-        <h4>Benötigte Zeit: {{ recipe.time }}</h4>
+        <h4>Benötigte Zeit: {{ recipe.time }} Minuten</h4>
         <v-chip-group row>
           <v-chip
             v-for="category in recipe.categories"
@@ -17,6 +17,12 @@
             >{{ category }}</v-chip
           >
         </v-chip-group>
+        <v-btn
+          class="fixed-button rounded-pill"
+          color="primary"
+          @click="goToRecipeSteps(recipe.name)"
+          >Steps</v-btn
+        >
       </v-col>
     </v-row>
 
@@ -65,14 +71,6 @@
         </v-card>
       </v-col>
     </v-row>
-
-    <!-- Carousel for Steps -->
-    <v-carousel hide-delimiters>
-      <v-carousel-item v-for="(step, index) in recipe.steps" :key="index">
-        <v-img :src="step.image" aspect-ratio="1.5" class="mb-2"></v-img>
-        <p>{{ step.description }}</p>
-      </v-carousel-item>
-    </v-carousel>
   </v-container>
   <v-container v-else>
     <p>Recipe not found.</p>
@@ -103,5 +101,20 @@ export default {
       }));
     },
   },
+  methods: {
+    goToRecipeSteps(recipeName) {
+      this.$router.push({ name: "recipeSteps", params: { recipeName } });
+    },
+  },
 };
 </script>
+
+<style>
+.fixed-button {
+  position: fixed; /* Fixed position */
+  bottom: 70px; /* 20px from the bottom */
+  right: 20px; /* 20px from the right */
+  z-index: 1000; /* High z-index to ensure it's above other content */
+  /* Additional styling for the button (size, color, etc.) */
+}
+</style>
