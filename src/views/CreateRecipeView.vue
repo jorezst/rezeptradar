@@ -58,7 +58,7 @@
 
 <script>
 import { ref } from "vue";
-import { recipes } from "@/store/data/recipes";
+import { useRecipesStore } from "@/store/data/recipes";
 import { categories } from "@/store/data/categories.js";
 import { units } from "@/store/data/units.js";
 
@@ -82,7 +82,7 @@ export default {
       (v) => (v && v.length <= 100) || "Name must be less than 100 characters",
     ];
 
-    const recipesStore = recipes();
+    const recipesStore = useRecipesStore();
 
     const addIngredient = () => {
       recipe.value.ingredients.push({ name: "", amount: 0, unit: "" });

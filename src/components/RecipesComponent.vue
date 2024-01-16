@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { recipes } from "@/store/data/recipes";
+import { useRecipesStore } from "@/store/data/recipes";
 import SearchBarComponent from "@/components/SearchBarComponent.vue";
 
 export default {
@@ -44,20 +44,23 @@ export default {
   components: {
     SearchBarComponent,
   },
+  setup() {
+    const recipesStore = useRecipesStore();
+    return { recipesStore };
+  },
   data() {
     return {
-      recipes,
       searchQuery: "",
     };
   },
   computed: {
     filteredRecipes() {
       if (!this.searchQuery.trim()) {
-        // When the search query is empty, return all recipes
-        return this.recipes;
+        // When the search query is empty, return all recipesStore.recipes
+        return this.recipesStore.recipes;
       }
-      // Return filtered recipes when there is a search query
-      return this.recipes.filter((recipe) =>
+      // Return filtered recipesStore.recipes when there is a search query
+      return this.recipesStore.recipes.filter((recipe) =>
         recipe.name.toLowerCase().includes(this.searchQuery.toLowerCase())
       );
     },

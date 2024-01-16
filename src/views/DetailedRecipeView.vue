@@ -78,10 +78,16 @@
 </template>
 
 <script>
-import { recipes } from "@/store/data/recipes";
+import { useRecipesStore } from "@/store/data/recipes";
 
 export default {
   props: ["recipeName"],
+  setup() {
+    const recipesStore = useRecipesStore();
+    return {
+      recipesStore,
+    };
+  },
   data() {
     return {
       portionCount: 2, // Default portions
@@ -89,7 +95,7 @@ export default {
   },
   computed: {
     recipe() {
-      return recipes.find((r) => r.name === this.recipeName);
+      return this.recipesStore.recipes.find((r) => r.name === this.recipeName);
     },
     adjustedIngredients() {
       if (!this.recipe) return [];
