@@ -11,8 +11,8 @@
         v-for="recipe in filteredRecipes"
         :key="recipe.name"
       >
-        <v-card>
-          <v-img :src="recipe.mainImage" height="200px"></v-img>
+        <v-card variant="tonal" class="rounded-xl">
+          <v-img :src="recipe.mainImage" aspect-ratio="1.5"></v-img>
           <v-card-title>{{ recipe.name }}</v-card-title>
           <v-card-subtitle>{{ recipe.time }} Minuten</v-card-subtitle>
           <v-card-text>
@@ -21,17 +21,13 @@
                 {{ category }}
               </v-chip>
             </v-chip-group>
-            <div>Zutaten:</div>
-            <ul>
-              <li
-                v-for="ingredient in recipe.ingredients"
-                :key="ingredient.name"
-              >
-                {{ ingredient.amount }} {{ ingredient.unit }}
-                {{ ingredient.name }}
-              </li>
-            </ul>
           </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" @click="goToRecipe(recipe.name)"
+              >Details</v-btn
+            >
+          </v-card-actions>
         </v-card>
         <!-- Your existing recipe card layout -->
       </v-col>
@@ -77,6 +73,9 @@ export default {
   methods: {
     onSearchUpdated(query) {
       this.searchQuery = query;
+    },
+    goToRecipe(recipeName) {
+      this.$router.push({ name: "detailedRecipe", params: { recipeName } });
     },
   },
 };
