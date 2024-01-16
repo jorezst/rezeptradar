@@ -1,10 +1,13 @@
 <template>
-  <v-row>
+  <v-row class="search-bar">
     <v-col cols="12">
       <v-text-field
+        bg-color="background"
+        color="primary"
+        variant="outlined"
+        rounded
         v-model="searchQuery"
         label="Rezepte suchen"
-        outlined
         clearable
         @input="updateSearch"
       ></v-text-field>
@@ -27,3 +30,11 @@ export default {
   },
 };
 </script>
+
+<style>
+.search-bar {
+  position: sticky;
+  top: 58px;
+  z-index: 1000; /* Ensures the search bar stays on top of other content */
+}
+</style>
