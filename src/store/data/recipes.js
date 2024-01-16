@@ -162,4 +162,63 @@ export const recipes = [
       },
     ],
   },
+  {
+    name: "Hähnchengeschnetzeltes in Tomaten-Sahne-Soße",
+    mainImage:
+      "./img/Recipes/Hähnchengeschnetzeltes/Hähnchengeschnetzeltes.png",
+    time: 45,
+    categories: ["Mittagessen", "Abendessen"],
+    ingredients: [
+      { name: "Hähnchenbrustfilet", amount: 250, unit: "Gramm" },
+      { name: "Basmatireis", amount: 150, unit: "Gramm" },
+      { name: "Porree", amount: 1, unit: "Stück" },
+      { name: "Kochsahne", amount: 150, unit: "gramm" },
+      { name: "Karotte", amount: 1, unit: "Stück" },
+      { name: "Petersilie", amount: 10, unit: "Gramm" },
+      { name: "Tomatenmark", amount: 70, unit: "Gramm" },
+      { name: "Paprikapulver", amount: 4, unit: "Gramm" },
+      { name: "Hühnerbrühe", amount: 4, unit: "Gramm" },
+    ],
+    utensils: ["Kleiner topf", "Große Pfanne"],
+    steps: [
+      {
+        description:
+          "Erhitze 300 ml [450 ml | 600 ml] Wasser im Wasserkocher.\n" +
+          "In einen kleinen Topf mit Deckel 300 ml [450 ml | 600 ml] heißes Wasser* füllen. Wasser salzen* und aufkochen lassen.\n" +
+          "Reis zugeben und bei niedriger Hitze 10 Min. abgedeckt köcheln lassen. Anschließend vom Herd nehmen und abgedeckt 10 Min. ziehen lassen.\n",
+        image: "./img/Recipes/Hähnchengeschnetzeltes/step1.png",
+      },
+      {
+        description:
+          "Karotte nach Belieben schälen, längs halbieren und in 0,5 cm Halbmonde schneiden.\n" +
+          "Porree längs halbieren, gründlich auswaschen und in 0,5 cm Halbmonde schneiden.\n" +
+          "Hähnchenbrust in 2 cm Stücke schneiden.\n" +
+          "Petersilie hacken.",
+        image: "./img/Recipes/Hähnchengeschnetzeltes/step2.png",
+      },
+      {
+        description:
+          "In einer großen Pfanne 2 EL [3 EL | 4 EL] Butter* erhitzen. Hähnchen," +
+          " Karotte sowie Porree darin 5 – 6 Min. goldbraun braten," +
+          " bis alles ein wenig Farbe bekommt. Mit Salz* und Pfeffer* würzen.",
+        image: "./img/Recipes/Hähnchengeschnetzeltes/step3.png",
+      },
+      {
+        description:
+          "Tomatenmark, Hühnerbrühe und Hello Paprika in die große Pfanne geben und 1 Min. anbraten.\n" +
+          "Hitze reduzieren, 100 ml [150 ml | 200 ml] Wasser* und Kochsahne hinzufügen und abgedeckt 6 – 8 Min." +
+          " köcheln lassen, dabei gelegentlich umrühren. Evtl. mit Salz* und Pfeffer* abschmecken.",
+        image: "./img/Recipes/Hähnchengeschnetzeltes/step4.png",
+      },
+      {
+        description: "Kurz vor dem Servieren Petersilie unter den Reis heben.",
+        image: "./img/Recipes/Hähnchengeschnetzeltes/step5.png",
+      },
+      {
+        description:
+          "Kräuterreis auf tiefe Teller verteilen und Hühnchen-Tomaten-Frikassee daneben anrichten.",
+        image: "./img/Recipes/Hähnchengeschnetzeltes/step6.png",
+      },
+    ],
+  },
 ];
