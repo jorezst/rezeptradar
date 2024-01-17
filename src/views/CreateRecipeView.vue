@@ -16,7 +16,7 @@
     <v-select
       label="Categories"
       v-model="recipe.categories"
-      :items="categories"
+      :items="categoriesStore.categories"
       multiple
       chips
     ></v-select>
@@ -59,20 +59,20 @@
 <script>
 import { ref } from "vue";
 import { useRecipesStore } from "@/store/data/recipes";
-import { categories } from "@/store/data/categories.js";
+import { useCategoriesStore } from "@/store/data/categories.js";
 import { units } from "@/store/data/units.js";
 
 // Components
 
 export default {
   setup() {
+    const categoriesStore = useCategoriesStore();
     const valid = ref(false);
     const form = ref(null);
     const recipe = ref({
       name: "",
       mainImage: "",
       time: 0,
-      categories: [],
       ingredients: [{ name: "", amount: 0, unit: "" }],
       steps: [{ description: "", image: "" }],
     });
@@ -109,7 +109,7 @@ export default {
 
     return {
       recipe,
-      categories,
+      categoriesStore,
       units,
       addIngredient,
       removeIngredient,
