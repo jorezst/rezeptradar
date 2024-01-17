@@ -1,5 +1,25 @@
 <template>
-  <v-btn color="primary" @click="toggleTheme">Theme umschalten</v-btn>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-btn color="primary" @click="toggleTheme">Toggle Theme</v-btn>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col>
+        <v-form @submit.prevent="addCategory">
+          <v-text-field
+            label="New Category"
+            v-model="newCategory"
+            outlined
+            required
+          ></v-text-field>
+          <v-btn type="submit" color="success">Add Category</v-btn>
+        </v-form>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup>
@@ -15,14 +35,19 @@ function toggleTheme() {
 </script>
 
 <script>
-import { defineComponent } from "vue";
-
-// Components
-
-export default defineComponent({
-  name: "SettingsView",
-  components: {},
-});
+import { useCategoriesStore } from "@/store/data/categories";
+export default {
+  data() {
+    return {
+      newCategory: "",
+    };
+  },
+  methods: {
+    addCategory() {
+      const categoriesStore = useCategoriesStore();
+      categoriesStore.addCategory(this.newCategory);
+      this.newCategory = "";
+    },
+  },
+};
 </script>
-
-<style scoped></style>
