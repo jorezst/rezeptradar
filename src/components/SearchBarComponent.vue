@@ -9,6 +9,7 @@
         v-model="searchQuery"
         label="Rezepte suchen"
         @input="updateSearch"
+        prepend-inner-icon="mdi-magnify"
       ></v-text-field>
     </v-col>
   </v-row>
