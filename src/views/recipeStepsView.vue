@@ -8,7 +8,10 @@
           >
             {{ index + 1 }}
           </v-card-text>
-          <v-img :src="step.image" aspect-ratio="1.5"></v-img>
+          <v-img
+            :src="step.image || defaultPlaceholderImage"
+            aspect-ratio="1.5"
+          ></v-img>
           <v-card-text class="description-text">{{
             step.description
           }}</v-card-text>
@@ -43,6 +46,11 @@ export default {
     goToRecipe(recipeName) {
       this.$router.push({ name: "detailedRecipe", params: { recipeName } });
     },
+  },
+  data() {
+    return {
+      defaultPlaceholderImage: "./img/Recipes/placeholder.png", // Add the path to your placeholder image here
+    };
   },
 };
 </script>
