@@ -125,12 +125,12 @@
         <v-card-title class="mb-1">Schritte</v-card-title>
         <v-card-item>
           <v-textarea
+            rounded
             label="Schritt"
             v-model="newStep.description"
             :rules="stepRules"
             variant="outlined"
             clearable
-            textarea
             rows="3"
             auto-grow
           ></v-textarea>
@@ -193,7 +193,7 @@ export default {
       (v) => !!v || "Bild ist erforderlich",
       (v) => {
         const pattern =
-          /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+          /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(:\d+)?(\/[\w-._~:/?#[\]@!$&'()*+,;=]*)?\.(jpg|jpeg|png|gif|bmp|svg)(\?.*)?$/i;
         return pattern.test(v) || "Falsche URL";
       },
     ];
@@ -254,10 +254,14 @@ export default {
     ];
 
     const stepImageRules = [
-      (v) => !!v || "Bild ist erforderlich",
       (v) => {
+        if (!v) {
+          // If the input is empty, return true (no image required)
+          return true;
+        }
+        // If there is input, perform the regex check
         const pattern =
-          /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*\/?$/;
+          /^(https?:\/\/)?([\w-]+(\.[\w-]+)+)(:\d+)?(\/[\w-._~:/?#[\]@!$&'()*+,;=]*)?\.(jpg|jpeg|png|gif|bmp|svg)(\?.*)?$/i;
         return pattern.test(v) || "Falsche URL";
       },
     ];
