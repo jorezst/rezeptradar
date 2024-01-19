@@ -1,14 +1,9 @@
 <template>
   <v-container>
-    <v-bottom-navigation :elevation="24" color="primary">
+    <v-bottom-navigation :elevation="24" color="primary" grow>
       <v-btn class="nav-item" value="home" to="/">
         <v-icon>mdi-home</v-icon>
         <span>Home</span>
-      </v-btn>
-
-      <v-btn class="nav-item" to="/Kochmodus">
-        <v-icon>mdi-chef-hat</v-icon>
-        <span>Kochmodus</span>
       </v-btn>
 
       <v-btn class="nav-item" to="/Rezept anlegen">
@@ -18,13 +13,5 @@
     </v-bottom-navigation>
   </v-container>
 </template>
-
-<style scoped>
-.nav-item {
-  flex: 1; /* Distribute available space equally among items */
-  min-width: 0; /* Allow items to shrink beyond their content width */
-  text-align: center; /* Center text within the button */
-}
-</style>
 
 <script></script>
