@@ -48,6 +48,14 @@ const routes = [
 ];
 
 const router = createRouter({
+  scrollBehavior(to, from, savedPosition) {
+    // Scroll to top for every route, but return to saved position when available (e.g., using back button)
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
   history: createWebHashHistory(),
   routes,
 });
