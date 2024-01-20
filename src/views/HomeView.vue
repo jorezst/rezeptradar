@@ -1,15 +1,31 @@
 <template>
-  <RecipesComponent />
+  <v-container>
+    <SearchBar @update-search="handleSearch"></SearchBar>
+    <RecipeGrid :search-query="searchQuery"></RecipeGrid>
+  </v-container>
 </template>
 
 <script>
-import RecipesComponent from "@/components/RecipesComponent.vue";
-import { defineComponent } from "vue";
+import SearchBar from "@/components/SearchBar.vue";
+import RecipeGrid from "@/components/RecipeGrid.vue";
+import { ref } from "vue";
 
 // Components
 
-export default defineComponent({
+export default {
   name: "HomeView",
-  components: { RecipesComponent },
-});
+  components: {
+    SearchBar,
+    RecipeGrid,
+  },
+  setup() {
+    const searchQuery = ref("");
+
+    const handleSearch = (newQuery) => {
+      searchQuery.value = newQuery;
+    };
+
+    return { searchQuery, handleSearch };
+  },
+};
 </script>
