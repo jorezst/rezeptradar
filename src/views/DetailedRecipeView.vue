@@ -25,8 +25,8 @@
       <v-col>
         <h4>Portionsgröße</h4>
         <v-slider
-          color="primary"
           v-model="portionCount"
+          color="primary"
           :max="10"
           :min="1"
           step="1"

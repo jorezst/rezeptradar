@@ -5,37 +5,37 @@
         <v-card-title class="mb-1"> Hauptinformationen </v-card-title>
         <v-card-item>
           <v-text-field
+            v-model="recipe.name"
             density="comfortable"
             rounded
             label="Rezept Name"
-            v-model="recipe.name"
             :rules="nameRules"
             variant="outlined"
             clearable
           ></v-text-field>
           <v-text-field
+            v-model="recipe.mainImage"
             density="comfortable"
             rounded
             label="Link zum Bild"
-            v-model="recipe.mainImage"
             :rules="mainImageRules"
             variant="outlined"
             clearable
           ></v-text-field>
           <v-text-field
+            v-model="recipe.time"
             density="comfortable"
             rounded
             label="Time (minutes)"
-            v-model="recipe.time"
             :rules="timeRules"
             type="number"
             variant="outlined"
             clearable
           ></v-text-field>
           <v-select
+            v-model="recipe.categories"
             density="comfortable"
             label="Kategorien"
-            v-model="recipe.categories"
             :items="categoriesStore.categories"
             :rules="categoryRules"
             multiple
@@ -52,10 +52,10 @@
         <v-card-title class="mb-1"> Zutaten </v-card-title>
         <v-card-item>
           <v-text-field
+            v-model="newIngredient.name"
             density="comfortable"
             rounded
             label="Zutat"
-            v-model="newIngredient.name"
             :rules="ingredientNameRules"
             variant="outlined"
             clearable
@@ -63,10 +63,10 @@
           <v-row>
             <v-col>
               <v-text-field
+                v-model="newIngredient.amount"
                 density="comfortable"
                 rounded
                 label="Menge"
-                v-model="newIngredient.amount"
                 :rules="ingredientAmountRules"
                 type="number"
                 variant="outlined"
@@ -75,10 +75,10 @@
             </v-col>
             <v-col>
               <v-select
+                v-model="newIngredient.unit"
                 density="comfortable"
                 rounded
                 label="Einheit"
-                v-model="newIngredient.unit"
                 :items="units"
                 :rules="ingredientUnitRules"
                 variant="outlined"
@@ -101,10 +101,10 @@
         <v-card-title class="mb-1">Utensilien</v-card-title>
         <v-card-item>
           <v-text-field
+            v-model="newUtensil"
             density="comfortable"
             rounded
             label="Utensil"
-            v-model="newUtensil"
             :rules="utensilNameRules"
             variant="outlined"
             clearable
@@ -125,9 +125,9 @@
         <v-card-title class="mb-1">Schritte</v-card-title>
         <v-card-item>
           <v-textarea
+            v-model="newStep.description"
             rounded
             label="Schritt"
-            v-model="newStep.description"
             :rules="stepRules"
             variant="outlined"
             clearable
@@ -135,10 +135,10 @@
             auto-grow
           ></v-textarea>
           <v-text-field
+            v-model="newStep.image"
             density="comfortable"
             rounded
             label="Link zum Bild"
-            v-model="newStep.image"
             :rules="stepImageRules"
             variant="outlined"
             clearable
