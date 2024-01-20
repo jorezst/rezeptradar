@@ -11,19 +11,21 @@
         <v-img :src="recipe.mainImage" aspect-ratio="1.5"></v-img>
         <v-card-title>{{ recipe.name }}</v-card-title>
         <v-card-subtitle>{{ recipe.time }} Minuten</v-card-subtitle>
-        <v-card-text>
+        <v-card-item>
           <v-chip-group>
             <v-chip v-for="category in recipe.categories" :key="category">
               {{ category }}
             </v-chip>
           </v-chip-group>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" @click="goToRecipe(recipe.name)"
+        </v-card-item>
+        <v-card-item class="d-flex justify-end">
+          <v-btn
+            color="primary"
+            class="rounded-xl mb-2"
+            @click="goToRecipe(recipe.name)"
             >Details</v-btn
           >
-        </v-card-actions>
+        </v-card-item>
       </v-card>
       <!-- Your existing recipe card layout -->
     </v-col>
