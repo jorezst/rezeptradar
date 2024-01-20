@@ -1,7 +1,13 @@
 <template>
   <v-container v-if="recipe">
     <v-row>
-      <v-col v-for="(step, index) in recipe.steps" :key="index" cols="12">
+      <v-col
+        v-for="(step, index) in recipe.steps"
+        :key="index"
+        cols="12"
+        md="6"
+        lg="4"
+      >
         <v-card variant="tonal" class="rounded-xl">
           <v-card-text
             class="step-number-overlay d-flex align-center justify-center"

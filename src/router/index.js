@@ -3,7 +3,7 @@ import HomeView from "../views/HomeView.vue";
 import CreateRecipeView from "../views/CreateRecipeView.vue";
 import SettingsView from "../views/SettingsView.vue";
 import DetailedRecipeView from "../views/DetailedRecipeView.vue";
-import recipeStepsView from "@/views/recipeStepsView.vue";
+import recipeStepsView from "@/views/StepsRecipeView.vue";
 
 const routes = [
   {
