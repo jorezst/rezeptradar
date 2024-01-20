@@ -37,6 +37,11 @@ export default {
     const recipesStore = useRecipesStore();
     return { recipesStore };
   },
+  data() {
+    return {
+      defaultPlaceholderImage: "./img/Recipes/placeholder.png", // Add the path to your placeholder image here
+    };
+  },
   computed: {
     recipe() {
       return this.recipesStore.recipes.find((r) => r.name === this.recipeName);
@@ -46,11 +51,6 @@ export default {
     goToRecipe(recipeName) {
       this.$router.push({ name: "detailedRecipe", params: { recipeName } });
     },
-  },
-  data() {
-    return {
-      defaultPlaceholderImage: "./img/Recipes/placeholder.png", // Add the path to your placeholder image here
-    };
   },
 };
 </script>
