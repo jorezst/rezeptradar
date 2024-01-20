@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import CreateRecipeView from "../views/CreateRecipeView.vue";
-import CookModeView from "../views/CookModeView.vue";
 import SettingsView from "../views/SettingsView.vue";
 import DetailedRecipeView from "../views/DetailedRecipeView.vue";
 import recipeStepsView from "@/views/recipeStepsView.vue";
@@ -18,12 +17,6 @@ const routes = [
     name: "createRecipe",
     component: CreateRecipeView,
     meta: { title: "Rezept anlegen" },
-  },
-  {
-    path: "/Kochmodus",
-    name: "cookMode",
-    component: CookModeView,
-    meta: { title: "Kochmodus" },
   },
   {
     path: "/Einstellungen",
