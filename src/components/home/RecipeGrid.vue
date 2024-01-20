@@ -40,22 +40,29 @@ import { useRouter } from "vue-router";
 export default {
   name: "RecipeGrid",
   props: {
-    searchQuery: {
-      type: String,
-      default: "", // Default value set to an empty string
-    },
+    searchQuery: String,
+    selectedCategory: String,
   },
   setup(props) {
     const recipesStore = useRecipesStore();
     const router = useRouter();
 
     const filteredRecipes = computed(() => {
-      if (!props.searchQuery) {
-        return recipesStore.recipes;
+      let result = recipesStore.recipes;
+
+      // Filter based on search query
+      if (props.searchQuery) {
+        result = result.filter((recipe) =>
+          recipe.name.toLowerCase().includes(props.searchQuery.toLowerCase())
+        );
       }
-      return recipesStore.recipes.filter((recipe) =>
-        recipe.name.toLowerCase().includes(props.searchQuery.toLowerCase())
-      );
+      // Filter based on selected category
+      if (props.selectedCategory) {
+        result = result.filter((recipe) =>
+          recipe.categories.includes(props.selectedCategory)
+        );
+      }
+      return result;
     });
 
     const goToRecipe = (recipeName) => {
