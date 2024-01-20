@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import SearchBar from "@/components/SearchBar.vue";
-import RecipeGrid from "@/components/RecipeGrid.vue";
+import SearchBar from "@/components/home/SearchBar.vue";
+import RecipeGrid from "@/components/home/RecipeGrid.vue";
 import { ref } from "vue";
 
 // Components

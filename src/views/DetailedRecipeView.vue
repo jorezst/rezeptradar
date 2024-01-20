@@ -1,69 +1,8 @@
 <template>
   <v-container v-if="recipe">
-    <v-row>
-      <v-col>
-        <v-img
-          :src="recipe.mainImage"
-          aspect-ratio="1.5"
-          class="mb-4 rounded-xl"
-        ></v-img>
-        <h2>{{ recipe.name }}</h2>
-        <h4>Benötigte Zeit: {{ recipe.time }} Minuten</h4>
-        <v-chip-group row>
-          <v-chip
-            v-for="category in recipe.categories"
-            :key="category"
-            outlined
-            >{{ category }}</v-chip
-          >
-        </v-chip-group>
-      </v-col>
-    </v-row>
-
-    <!-- Portion Selector -->
-    <v-row>
-      <v-col>
-        <h4>Portionsgröße</h4>
-        <v-slider
-          v-model="portionCount"
-          color="primary"
-          :max="10"
-          :min="1"
-          step="1"
-          thumb-label
-          always-dirty
-        ></v-slider>
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col>
-        <v-card variant="tonal" class="rounded-xl">
-          <v-card-title>Zutaten für {{ portionCount }} Portionen </v-card-title>
-          <v-list density="" rounded>
-            <v-list-item
-              v-for="ingredient in adjustedIngredients"
-              :key="ingredient.name"
-            >
-              <v-list-item-content>
-                • {{ ingredient.amount }} {{ ingredient.unit }}
-                {{ ingredient.name }}
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-
-      <v-col>
-        <v-card variant="tonal" class="rounded-xl">
-          <v-card-title>Utensilien</v-card-title>
-          <v-list density="">
-            <v-list-item v-for="utensil in recipe.utensils" :key="utensil">
-              <v-list-item-content>• {{ utensil }}</v-list-item-content>
-            </v-list-item>
-          </v-list>
-        </v-card>
-      </v-col>
-    </v-row>
+    <MainInfo :recipe-name="recipeName" />
+    <IngredientInfo :recipe="recipe" />
+    <UtensilInfo :recipe="recipe" />
     <v-btn
       class="fixed-button rounded-pill"
       color="primary"
@@ -79,8 +18,12 @@
 
 <script>
 import { useRecipesStore } from "@/store/data/recipes";
+import MainInfo from "@/components/detailed/MainInfo.vue";
+import IngredientInfo from "@/components/detailed/IngredientInfo.vue";
+import UtensilInfo from "@/components/detailed/UtensilInfo.vue";
 
 export default {
+  components: { UtensilInfo, IngredientInfo, MainInfo },
   props: ["recipeName"],
   setup() {
     const recipesStore = useRecipesStore();
@@ -88,23 +31,9 @@ export default {
       recipesStore,
     };
   },
-  data() {
-    return {
-      portionCount: 2, // Default portions
-    };
-  },
   computed: {
     recipe() {
       return this.recipesStore.recipes.find((r) => r.name === this.recipeName);
-    },
-    adjustedIngredients() {
-      if (!this.recipe) return [];
-
-      // Adjust ingredient amounts based on portion count
-      return this.recipe.ingredients.map((ingredient) => ({
-        ...ingredient,
-        amount: (ingredient.amount / 2) * this.portionCount, // Assuming the original recipe is for 2 portions
-      }));
     },
   },
   methods: {
