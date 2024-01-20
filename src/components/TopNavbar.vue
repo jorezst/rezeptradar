@@ -1,12 +1,3 @@
-<script setup>
-import { useRoute } from "vue-router";
-import { computed } from "vue";
-
-const route = useRoute();
-
-const pageTitle = computed(() => route.meta.title || "Default Title");
-</script>
-
 <template>
   <v-app-bar app :elevation="0" color="background">
     <!-- Back Arrow Icon -->
@@ -25,27 +16,26 @@ const pageTitle = computed(() => route.meta.title || "Default Title");
 </template>
 
 <script>
+import { computed } from "vue";
+import { useRoute, useRouter } from "vue-router";
+
 export default {
-  computed: {
-    titleStyle() {
-      const maxWidth = window.innerWidth - 48 * 2 - 40; // 40px for some additional padding
-      return {
-        "max-width": `${maxWidth}px`,
-        overflow: "hidden",
-        "text-overflow": "ellipsis",
-        "white-space": "nowrap",
-      };
-    },
-  },
-  methods: {
-    goBack() {
-      // Add logic to go back to the previous site
-      this.$router.go(-1);
-    },
-    goToSettings() {
-      // Add logic to navigate to the /Settings site
-      this.$router.push("/Einstellungen");
-    },
+  setup() {
+    const route = useRoute();
+    const router = useRouter();
+
+    const pageTitle = computed(() => route.meta.title || "Default Title");
+
+    const goBack = () => {
+      router.go(-1);
+    };
+
+    const goToSettings = () => {
+      router.push("/Einstellungen");
+    };
+
+    // Return all reactive states, computed properties, and methods
+    return { pageTitle, goBack, goToSettings };
   },
 };
 </script>
