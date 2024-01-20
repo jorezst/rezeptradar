@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import BottomNavbar from "@/components/BottomNavbar.vue";
-import TopNavbar from "@/components/TopNavbar.vue";
+import BottomNavbar from "@/components/navigation/BottomNavbar.vue";
+import TopNavbar from "@/components/navigation/TopNavbar.vue";
 
 export default {
   name: "App",
