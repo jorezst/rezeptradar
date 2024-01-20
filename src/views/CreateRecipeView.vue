@@ -11,7 +11,7 @@
             label="Rezept Name"
             :rules="nameRules"
             variant="outlined"
-            clearable
+            clearable=""
           ></v-text-field>
           <v-text-field
             v-model="recipe.mainImage"
@@ -20,7 +20,7 @@
             label="Link zum Bild"
             :rules="mainImageRules"
             variant="outlined"
-            clearable
+            clearable=""
           ></v-text-field>
           <v-text-field
             v-model="recipe.time"
@@ -30,7 +30,7 @@
             :rules="timeRules"
             type="number"
             variant="outlined"
-            clearable
+            clearable=""
           ></v-text-field>
           <v-select
             v-model="recipe.categories"
@@ -38,11 +38,11 @@
             label="Kategorien"
             :items="categoriesStore.categories"
             :rules="categoryRules"
-            multiple
+            multiple=""
             rounded
             variant="outlined"
-            chips
-            clearable
+            chips=""
+            clearable=""
           ></v-select>
         </v-card-item>
       </v-card>
@@ -58,7 +58,7 @@
             label="Zutat"
             :rules="ingredientNameRules"
             variant="outlined"
-            clearable
+            clearable=""
           ></v-text-field>
           <v-row>
             <v-col>
@@ -70,7 +70,7 @@
                 :rules="ingredientAmountRules"
                 type="number"
                 variant="outlined"
-                clearable
+                clearable=""
               ></v-text-field>
             </v-col>
             <v-col>
@@ -82,12 +82,12 @@
                 :items="units"
                 :rules="ingredientUnitRules"
                 variant="outlined"
-                clearable
+                clearable=""
               ></v-select>
             </v-col>
           </v-row>
           <v-btn
-            block
+            block=""
             class="rounded-xl mb-2"
             color="primary"
             @click="addIngredient"
@@ -107,10 +107,10 @@
             label="Utensil"
             :rules="utensilNameRules"
             variant="outlined"
-            clearable
+            clearable=""
           ></v-text-field>
           <v-btn
-            block
+            block=""
             class="rounded-xl mb-2"
             color="primary"
             @click="addUtensil"
@@ -130,7 +130,7 @@
             label="Schritt"
             :rules="stepRules"
             variant="outlined"
-            clearable
+            clearable=""
             rows="3"
             auto-grow
           ></v-textarea>
@@ -141,15 +141,20 @@
             label="Link zum Bild"
             :rules="stepImageRules"
             variant="outlined"
-            clearable
+            clearable=""
           ></v-text-field>
-          <v-btn block class="rounded-xl mb-2" color="primary" @click="addStep">
+          <v-btn
+            block=""
+            class="rounded-xl mb-2"
+            color="primary"
+            @click="addStep"
+          >
             Schritt hinzufügen
           </v-btn>
         </v-card-item>
       </v-card>
     </v-form>
-    <v-btn block color="primary" class="rounded-xl mb-2" @click="submitForm"
+    <v-btn block="" color="primary" class="rounded-xl mb-2" @click="submitForm"
       >Rezept hinzufügen</v-btn
     >
   </v-container>
@@ -177,6 +182,7 @@ export default {
       steps: [],
     });
 
+    const isValidationTriggered = ref(false); // Flag to control validation
     const newIngredient = ref({ name: "", amount: "", unit: "" });
     const newUtensil = ref("");
     const newStep = ref({ description: "", image: "" });
@@ -216,39 +222,60 @@ export default {
     ];
 
     const ingredientNameRules = [
-      (v) => !!v || "Zutatenname ist erforderlich",
       (v) =>
+        !isValidationTriggered.value || !!v || "Zutatenname ist erforderlich",
+      (v) =>
+        !isValidationTriggered.value ||
         (v && v.length <= 50) ||
         "Zutatenname darf nicht länger als 50 Zeichen sein",
       (v) =>
+        !isValidationTriggered.value ||
         (v && v.length >= 3) ||
         "Zutatenname muss mindestens 3 Zeichen lang sein",
     ];
 
     const ingredientAmountRules = [
-      (v) => !!v || "Menge ist erforderlich",
-      (v) => !isNaN(v) || "Menge muss eine Zahl sein",
-      (v) => (v && v > 0) || "Menge muss größer als 0 sein",
+      (v) => !isValidationTriggered.value || !!v || "Menge ist erforderlich",
+      (v) =>
+        !isValidationTriggered.value ||
+        !isNaN(v) ||
+        "Menge muss eine Zahl sein",
+      (v) =>
+        !isValidationTriggered.value ||
+        (v && v > 0) ||
+        "Menge muss größer als 0 sein",
     ];
 
-    const ingredientUnitRules = [(v) => !!v || "Einheit ist erforderlich"];
+    const ingredientUnitRules = [
+      (v) => !isValidationTriggered.value || !!v || "Einheit ist erforderlich",
+    ];
 
     const utensilNameRules = [
-      (v) => !!v || "Utensilienname ist erforderlich",
       (v) =>
+        !isValidationTriggered.value ||
+        !!v ||
+        "Utensilienname ist erforderlich",
+      (v) =>
+        !isValidationTriggered.value ||
         (v && v.length <= 50) ||
         "Utensilienname darf nicht länger als 50 Zeichen sein",
       (v) =>
+        !isValidationTriggered.value ||
         (v && v.length >= 3) ||
         "Utensilienname muss mindestens 3 Zeichen lang sein",
     ];
 
     const stepRules = [
-      (v) => !!v || "Schrittbeschreibung ist erforderlich",
       (v) =>
+        !isValidationTriggered.value ||
+        !!v ||
+        "Schrittbeschreibung ist erforderlich",
+      (v) =>
+        !isValidationTriggered.value ||
         (v && v.length <= 600) ||
         "Schritt darf nicht länger als 600 Zeichen sein",
       (v) =>
+        !isValidationTriggered.value ||
         (v && v.length >= 10) ||
         "Schritt darf nicht kürzer als 10 Zeichen sein",
     ];
@@ -268,6 +295,7 @@ export default {
 
     // Methods
     const addIngredient = async () => {
+      isValidationTriggered.value = true; // Set flag to true when button is pressed
       const validationResult = await ingredientForm.value.validate();
       if (validationResult.valid) {
         // Add the new ingredient
@@ -280,6 +308,8 @@ export default {
 
     const resetIngredientForm = () => {
       newIngredient.value = { name: "", amount: "", unit: "" };
+      isValidationTriggered.value = false; // Reset the flag when form is reset
+      ingredientForm.value.resetValidation(); // Reset the validation state of the form
     };
 
     const removeIngredient = (index) => {
@@ -287,6 +317,7 @@ export default {
     };
 
     const addUtensil = async () => {
+      isValidationTriggered.value = true; // Set flag to true when button is pressed
       const validationResult = await utensilForm.value.validate();
       if (validationResult.valid) {
         recipe.value.utensils.push(newUtensil.value);
@@ -298,6 +329,8 @@ export default {
 
     const resetUtensilForm = () => {
       newUtensil.value = [""];
+      isValidationTriggered.value = false; // Reset the flag when form is reset
+      utensilForm.value.resetValidation(); // Reset the validation state of the form
     };
 
     const removeUtensil = (index) => {
@@ -305,6 +338,7 @@ export default {
     };
 
     const addStep = async () => {
+      isValidationTriggered.value = true; // Set flag to true when button is pressed
       const validationResult = await stepForm.value.validate();
       if (validationResult.valid) {
         recipe.value.steps.push(newStep.value);
@@ -316,6 +350,8 @@ export default {
 
     const resetStepForm = () => {
       newStep.value = { description: "", image: "" };
+      isValidationTriggered.value = false; // Reset the flag when form is reset
+      stepForm.value.resetValidation(); // Reset the validation state of the form
     };
 
     const removeStep = (index) => {
