@@ -22,14 +22,14 @@ Die App wird auf Github-Pages gehostet: https://jorezst.github.io/rezeptradar/#/
 
 ## Projekt Konzept
 ### Muss-Kann Kriterien
-![Muss-Kann-Kriterien.png](public%2Fimg%2FDoku%2FMuss-Kann-Kriterien.png)
+![Muss-Kann-Kriterien.png](docs%2Fpictures%2FMuss-Kann-Kriterien.png)
 ### Wireframes
 #### Home
-![Wireframe_Home.png](public%2Fimg%2FDoku%2FWireframe_Home.png)
+![Wireframe_Home.png](docs%2Fpictures%2FWireframe_Home.png)
 #### Kochmodus
-![Wireframe_Kochmodus.png](public%2Fimg%2FDoku%2FWireframe_Kochmodus.png)
+![Wireframe_Kochmodus.png](docs%2Fpictures%2FWireframe_Kochmodus.png)
 #### Rezept erstellen
-![Wireframe_Rezept-erstellen.png](public%2Fimg%2FDoku%2FWireframe_Rezept-erstellen.png)
+![Wireframe_Rezept-erstellen.png](docs%2Fpictures%2FWireframe_Rezept-erstellen.png)
 ## Projekt Erstellung
 ```
 npm install -g @vue/cli
