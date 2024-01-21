@@ -1,5 +1,6 @@
 <template>
   <v-select
+    chips=""
     rounded
     bg-color="background"
     color="primary"
@@ -33,5 +34,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

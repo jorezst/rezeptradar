@@ -2,12 +2,12 @@
   <v-container>
     <v-row class="sticky-nav">
       <v-col>
-        <SearchBar @update-search="handleSearch"></SearchBar>
-      </v-col>
-      <v-col>
         <CategoryFilter
           @update-category="handleCategoryUpdate"
         ></CategoryFilter>
+      </v-col>
+      <v-col>
+        <SearchBar @update-search="handleSearch"></SearchBar>
       </v-col>
     </v-row>
     <RecipeGrid
