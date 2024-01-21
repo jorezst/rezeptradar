@@ -1,24 +1,39 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <v-btn color="primary" @click="toggleTheme">Toggle Theme</v-btn>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col>
-        <v-form @submit.prevent="addCategory">
-          <v-text-field
-            v-model="newCategory"
-            label="New Category"
-            outlined
-            required
-          ></v-text-field>
-          <v-btn type="submit" color="success">Add Category</v-btn>
-        </v-form>
-      </v-col>
-    </v-row>
+    <v-card variant="tonal" class="mb-4 rounded-xl">
+      <v-card-title>Theme umschalten</v-card-title>
+      <v-card-item>
+        <v-row>
+          <v-col>
+            <v-btn block color="primary" @click="toggleTheme"
+              >Theme umschalten</v-btn
+            >
+          </v-col>
+        </v-row>
+      </v-card-item>
+    </v-card>
+    <v-card variant="tonal" class="mb-4 rounded-xl">
+      <v-card-title>Kategorien hinzufügen</v-card-title>
+      <v-card-item>
+        <v-row>
+          <v-col>
+            <v-form @submit.prevent="addCategory">
+              <v-text-field
+                rounded
+                variant="outlined"
+                v-model="newCategory"
+                label="New Category"
+                outlined
+                required
+              ></v-text-field>
+              <v-btn block type="submit" color="primary"
+                >Kategorien hinzufügen</v-btn
+              >
+            </v-form>
+          </v-col>
+        </v-row>
+      </v-card-item>
+    </v-card>
   </v-container>
 </template>
 
