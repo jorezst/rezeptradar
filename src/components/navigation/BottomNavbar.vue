@@ -6,7 +6,7 @@
         <span>Home</span>
       </v-btn>
 
-      <v-btn class="nav-item" to="/Rezept anlegen">
+      <v-btn class="nav-item" to="/rezept-anlegen">
         <v-icon>mdi-plus</v-icon>
         <span>Hinzufügen</span>
       </v-btn>

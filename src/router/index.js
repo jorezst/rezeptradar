@@ -13,26 +13,26 @@ const routes = [
     meta: { title: "Home" },
   },
   {
-    path: "/Rezept Anlegen",
+    path: "/rezept-anlegen",
     name: "createRecipe",
     component: CreateRecipeView,
     meta: { title: "Rezept anlegen" },
   },
   {
-    path: "/Einstellungen",
+    path: "/einstellungen",
     name: "Settings",
     component: SettingsView,
     meta: { title: "Einstellungen" },
   },
   {
-    path: "/recipe/:recipeName", // :recipeName is a dynamic segment
+    path: "/rezept-details/:recipeName", // :recipeName is a dynamic segment
     name: "detailedRecipe",
     component: DetailedRecipeView,
     props: true, // This allows the route to pass the dynamic segment as a prop to the component
     meta: { title: "Rezeptdetails" },
   },
   {
-    path: "/recipeSteps/:recipeName", // :recipeName is a dynamic segment
+    path: "/rezept-schritte/:recipeName", // :recipeName is a dynamic segment
     name: "recipeSteps",
     component: recipeStepsView,
     props: true, // This allows the route to pass the dynamic segment as a prop to the component

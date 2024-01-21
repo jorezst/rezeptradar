@@ -5,7 +5,11 @@
       <v-card-item>
         <v-row>
           <v-col>
-            <v-btn block color="primary" @click="toggleTheme"
+            <v-btn
+              class="rounded-xl mb-1"
+              block
+              color="primary"
+              @click="toggleTheme"
               >Theme umschalten</v-btn
             >
           </v-col>
@@ -26,7 +30,7 @@
                 outlined
                 required
               ></v-text-field>
-              <v-btn block type="submit" color="primary"
+              <v-btn class="rounded-xl mb-1" block type="submit" color="primary"
                 >Kategorien hinzufügen</v-btn
               >
             </v-form>

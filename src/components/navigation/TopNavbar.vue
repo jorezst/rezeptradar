@@ -31,7 +31,7 @@ export default {
     };
 
     const goToSettings = () => {
-      router.push("/Einstellungen");
+      router.push("/einstellungen");
     };
 
     // Return all reactive states, computed properties, and methods
