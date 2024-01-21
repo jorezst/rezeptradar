@@ -18,7 +18,7 @@
     <v-col>
       <v-card variant="tonal" class="rounded-xl">
         <v-card-title>Zutaten für {{ portionCount }} Portionen </v-card-title>
-        <v-list density="" rounded>
+        <v-list density="">
           <v-list-item
             v-for="ingredient in adjustedIngredients"
             :key="ingredient.name"

@@ -82,7 +82,6 @@
                 :items="units"
                 :rules="ingredientUnitRules"
                 variant="outlined"
-                clearable=""
               ></v-select>
             </v-col>
           </v-row>
@@ -94,30 +93,25 @@
             >Zutat hinzufügen</v-btn
           >
         </v-card-item>
+        <v-card-item>
+          <v-card-title class="mb-1"> Aktuelle Zutaten</v-card-title>
+          <v-list density="">
+            <v-list-item
+              v-for="(ingredient, index) in recipe.ingredients"
+              :key="index"
+            >
+              <v-list-item-content>
+                • {{ ingredient.amount }} {{ ingredient.unit }}
+                {{ ingredient.name }}
+              </v-list-item-content>
+              <v-icon color="primary" @click="removeIngredient(index)"
+                >mdi-delete</v-icon
+              >
+            </v-list-item>
+          </v-list>
+        </v-card-item>
       </v-card>
     </v-form>
-    <v-list dense>
-      <v-subheader>Current Ingredients</v-subheader>
-      <v-list-item-group>
-        <v-list-item
-          v-for="(ingredient, index) in recipe.ingredients"
-          :key="index"
-        >
-          <v-list-item-content>
-            <v-list-item-title
-              >{{ ingredient.name }} - {{ ingredient.amount }}
-              {{ ingredient.unit }}</v-list-item-title
-            >
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-btn icon @click="removeIngredient(index)">
-              <v-icon>mdi-delete</v-icon>
-            </v-btn>
-          </v-list-item-action>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-
     <v-form ref="utensilForm">
       <v-card variant="tonal" class="rounded-xl mb-4">
         <v-card-title class="mb-1">Utensilien</v-card-title>
@@ -140,15 +134,28 @@
             Utensil hinzufügen
           </v-btn>
         </v-card-item>
+        <v-card-item>
+          <v-card-title class="mb-1"> Aktuelle Utensilien</v-card-title>
+          <v-list density="">
+            <v-list-item
+              v-for="(utensils, index) in recipe.utensils"
+              :key="index"
+            >
+              <v-list-item-content> • {{ utensils }} </v-list-item-content>
+              <v-icon color="primary" @click="removeUtensil(index)"
+                >mdi-delete</v-icon
+              >
+            </v-list-item>
+          </v-list>
+        </v-card-item>
       </v-card>
     </v-form>
     <v-form ref="stepForm">
-      <v-card variant="tonal" class="rounded-xl mb-4">
+      <v-card variant="tonal" class="rounded-xl mb-12">
         <v-card-title class="mb-1">Schritte</v-card-title>
         <v-card-item>
           <v-textarea
             v-model="newStep.description"
-            rounded
             label="Schritt"
             :rules="stepRules"
             variant="outlined"
@@ -173,6 +180,20 @@
           >
             Schritt hinzufügen
           </v-btn>
+        </v-card-item>
+        <v-card-item>
+          <v-card-title class="mb-1">Aktuelle Schritte</v-card-title>
+          <v-list density="">
+            <v-list-item v-for="(steps, index) in recipe.steps" :key="index">
+              <v-list-item-content>
+                <v-img class="rounded-xl" :src="steps.image"></v-img>
+                • {{ steps.description }}
+                <v-icon color="primary" @click="removeStep(index)"
+                  >mdi-delete</v-icon
+                >
+              </v-list-item-content>
+            </v-list-item>
+          </v-list>
         </v-card-item>
       </v-card>
     </v-form>
@@ -214,7 +235,7 @@ export default {
       (v) =>
         (v && v.length <= 40) ||
         "Name darf nicht länger als 40 Zeichen lang sein",
-      (v) => (v && v.length >= 5) || "Name muss mindestens 5 Zeichen lang sein",
+      (v) => (v && v.length >= 2) || "Name muss mindestens 2 Zeichen lang sein",
     ];
 
     const mainImageRules = [
@@ -248,12 +269,12 @@ export default {
         !isValidationTriggered.value || !!v || "Zutatenname ist erforderlich",
       (v) =>
         !isValidationTriggered.value ||
-        (v && v.length <= 50) ||
-        "Zutatenname darf nicht länger als 50 Zeichen sein",
+        (v && v.length <= 40) ||
+        "Zutatenname darf nicht länger als 40 Zeichen sein",
       (v) =>
         !isValidationTriggered.value ||
-        (v && v.length >= 3) ||
-        "Zutatenname muss mindestens 3 Zeichen lang sein",
+        (v && v.length >= 2) ||
+        "Zutatenname muss mindestens 2 Zeichen lang sein",
     ];
 
     const ingredientAmountRules = [
@@ -279,12 +300,12 @@ export default {
         "Utensilienname ist erforderlich",
       (v) =>
         !isValidationTriggered.value ||
-        (v && v.length <= 50) ||
-        "Utensilienname darf nicht länger als 50 Zeichen sein",
+        (v && v.length <= 40) ||
+        "Utensilienname darf nicht länger als 40 Zeichen sein",
       (v) =>
         !isValidationTriggered.value ||
-        (v && v.length >= 3) ||
-        "Utensilienname muss mindestens 3 Zeichen lang sein",
+        (v && v.length >= 2) ||
+        "Utensilienname muss mindestens 2 Zeichen lang sein",
     ];
 
     const stepRules = [
@@ -298,8 +319,8 @@ export default {
         "Schritt darf nicht länger als 600 Zeichen sein",
       (v) =>
         !isValidationTriggered.value ||
-        (v && v.length >= 10) ||
-        "Schritt darf nicht kürzer als 10 Zeichen sein",
+        (v && v.length >= 5) ||
+        "Schritt darf nicht kürzer als 5 Zeichen sein",
     ];
 
     const stepImageRules = [
