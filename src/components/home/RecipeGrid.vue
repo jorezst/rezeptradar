@@ -70,7 +70,7 @@ export default {
     const goToRecipe = (recipeName) => {
       // Logic to navigate to the recipe detail page
       // For example, using router.push to navigate
-      router.push(`/recipe/${recipeName}`);
+      router.push(`/rezept-details/${recipeName}`);
     };
 
     return { filteredRecipes, goToRecipe };

@@ -21,24 +21,27 @@ import { useRecipesStore } from "@/store/data/recipes";
 import MainInfo from "@/components/detailed/MainInfo.vue";
 import IngredientInfo from "@/components/detailed/IngredientInfo.vue";
 import UtensilInfo from "@/components/detailed/UtensilInfo.vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: { UtensilInfo, IngredientInfo, MainInfo },
   props: ["recipeName"],
   setup() {
+    const router = useRouter();
     const recipesStore = useRecipesStore();
+
+    const goToRecipeSteps = (recipeName) => {
+      router.push(`/rezept-schritte/${recipeName}`);
+    };
+
     return {
       recipesStore,
+      goToRecipeSteps,
     };
   },
   computed: {
     recipe() {
       return this.recipesStore.recipes.find((r) => r.name === this.recipeName);
-    },
-  },
-  methods: {
-    goToRecipeSteps(recipeName) {
-      this.$router.push({ name: "recipeSteps", params: { recipeName } });
     },
   },
 };
