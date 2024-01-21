@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <!-- Implement the Category Filter and Searchbar in a Column Layout beside eachother -->
     <v-row class="sticky-nav">
       <v-col>
         <CategoryFilter
@@ -10,6 +11,7 @@
         <SearchBar @update-search="handleSearch"></SearchBar>
       </v-col>
     </v-row>
+    <!-- Implement the Recipegrid and send the Search Results to them -->
     <RecipeGrid
       :search-query="searchQuery"
       :selected-categories="selectedCategories"

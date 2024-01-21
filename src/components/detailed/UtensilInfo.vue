@@ -1,6 +1,7 @@
 <template>
   <v-row>
     <v-col>
+      <!-- Utensil Display Card -->
       <v-card variant="tonal" class="rounded-xl">
         <v-card-title>Utensilien</v-card-title>
         <v-list density="">

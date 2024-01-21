@@ -1,7 +1,7 @@
 <template>
-  <!-- Portion Selector -->
   <v-row>
     <v-col>
+      <!-- Portion Selector Slider -->
       <h4>Portionsgröße</h4>
       <v-slider
         v-model="portionCount"
@@ -16,6 +16,7 @@
   </v-row>
   <v-row>
     <v-col>
+      <!-- Reactive Ingredient Card -->
       <v-card variant="tonal" class="rounded-xl">
         <v-card-title>Zutaten für {{ portionCount }} Portionen </v-card-title>
         <v-list density="">
@@ -40,7 +41,7 @@ import { ref, computed } from "vue";
 export default {
   props: ["recipe"],
   setup(props) {
-    const portionCount = ref(2); // Default portions
+    const portionCount = ref(2); // Default Portion set to 2
 
     const adjustedIngredients = computed(() => {
       if (!props.recipe || !props.recipe.ingredients) return [];
@@ -48,7 +49,7 @@ export default {
       // Adjust ingredient amounts based on portion count
       return props.recipe.ingredients.map((ingredient) => ({
         ...ingredient,
-        amount: (ingredient.amount / 2) * portionCount.value, // Adjust based on portionCount
+        amount: (ingredient.amount / 2) * portionCount.value,
       }));
     });
 

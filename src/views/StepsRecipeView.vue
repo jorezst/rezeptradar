@@ -1,5 +1,6 @@
 <template>
   <v-container v-if="recipe">
+    <!-- Display every available Step in the Recipe -->
     <v-row>
       <v-col
         v-for="(step, index) in recipe.steps"
@@ -14,6 +15,7 @@
           >
             {{ index + 1 }}
           </v-card-text>
+          <!-- Displays either input image or Placeholder image -->
           <v-img
             :src="step.image || defaultPlaceholderImage"
             aspect-ratio="1.5"

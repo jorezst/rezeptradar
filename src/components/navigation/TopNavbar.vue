@@ -26,10 +26,12 @@ export default {
 
     const pageTitle = computed(() => route.meta.title || "Default Title");
 
+    // Logic for the back button
     const goBack = () => {
       router.go(-1);
     };
 
+    // Logic to navigate to the settings page
     const goToSettings = () => {
       router.push("/einstellungen");
     };

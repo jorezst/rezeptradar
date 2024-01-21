@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <!-- Form for the Main Information -->
     <v-form ref="mainForm">
       <v-card variant="tonal" class="rounded-xl mb-4">
         <v-card-title class="mb-1"> Hauptinformationen </v-card-title>
@@ -47,9 +48,11 @@
         </v-card-item>
       </v-card>
     </v-form>
+    <!-- Form for all Ingredients -->
     <v-form ref="ingredientForm">
       <v-card variant="tonal" class="rounded-xl mb-4">
         <v-card-title class="mb-1"> Zutaten </v-card-title>
+        <!-- Input fields -->
         <v-card-item>
           <v-text-field
             v-model="newIngredient.name"
@@ -93,6 +96,7 @@
             >Zutat hinzufügen</v-btn
           >
         </v-card-item>
+        <!-- Reactive Ingredient List -->
         <v-card-item>
           <v-card-title class="mb-1"> Aktuelle Zutaten</v-card-title>
           <v-list density="">
@@ -112,9 +116,11 @@
         </v-card-item>
       </v-card>
     </v-form>
+    <!-- Form for all Utensils -->
     <v-form ref="utensilForm">
       <v-card variant="tonal" class="rounded-xl mb-4">
         <v-card-title class="mb-1">Utensilien</v-card-title>
+        <!-- Input fields -->
         <v-card-item>
           <v-text-field
             v-model="newUtensil"
@@ -134,6 +140,7 @@
             Utensil hinzufügen
           </v-btn>
         </v-card-item>
+        <!-- Reactive Utensil List -->
         <v-card-item>
           <v-card-title class="mb-1"> Aktuelle Utensilien</v-card-title>
           <v-list density="">
@@ -150,9 +157,11 @@
         </v-card-item>
       </v-card>
     </v-form>
+    <!-- Form for all Steps -->
     <v-form ref="stepForm">
       <v-card variant="tonal" class="rounded-xl mb-12">
         <v-card-title class="mb-1">Schritte</v-card-title>
+        <!-- Input fields -->
         <v-card-item>
           <v-textarea
             v-model="newStep.description"
@@ -181,6 +190,7 @@
             Schritt hinzufügen
           </v-btn>
         </v-card-item>
+        <!-- Reactive Steps List -->
         <v-card-item>
           <v-card-title class="mb-1">Aktuelle Schritte</v-card-title>
           <v-list density="">
@@ -197,6 +207,7 @@
         </v-card-item>
       </v-card>
     </v-form>
+    <!-- Submits Form to RecipeStore -->
     <v-btn block="" color="primary" class="rounded-xl mb-2" @click="submitForm"
       >Rezept hinzufügen</v-btn
     >
@@ -225,11 +236,13 @@ export default {
       steps: [],
     });
 
+    // To Reset the different input fields to null
     const isValidationTriggered = ref(false); // Flag to control validation
     const newIngredient = ref({ name: "", amount: "", unit: "" });
     const newUtensil = ref("");
     const newStep = ref({ description: "", image: "" });
 
+    // All the rules for validation of Input
     const nameRules = [
       (v) => !!v || "Name ist erforderlich",
       (v) =>
@@ -336,7 +349,6 @@ export default {
       },
     ];
 
-    // Methods
     const addIngredient = async () => {
       isValidationTriggered.value = true; // Set flag to true when button is pressed
       const validationResult = await ingredientForm.value.validate();
@@ -424,7 +436,6 @@ export default {
         } else {
           // If the form is valid, proceed with adding the recipe
           recipesStore.addRecipe(recipe.value);
-          // Optionally reset the form or provide other user feedback
         }
       });
     };

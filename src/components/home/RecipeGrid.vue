@@ -1,5 +1,6 @@
 <template>
   <v-row>
+    <!-- Displays every recipe that was filtered from the Category Filter and the Searchbar -->
     <v-col
       v-for="recipe in filteredRecipes"
       :key="recipe.name"
@@ -27,7 +28,6 @@
           >
         </v-card-item>
       </v-card>
-      <!-- Your existing recipe card layout -->
     </v-col>
   </v-row>
 </template>
@@ -69,7 +69,6 @@ export default {
 
     const goToRecipe = (recipeName) => {
       // Logic to navigate to the recipe detail page
-      // For example, using router.push to navigate
       router.push(`/rezept-details/${recipeName}`);
     };
 

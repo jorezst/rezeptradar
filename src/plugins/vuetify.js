@@ -7,6 +7,7 @@ import { createVuetify } from "vuetify";
 
 //import colors from "vuetify/util/colors";
 
+// Custom LightTheme
 const myCustomLightTheme = {
   dark: false,
   colors: {
@@ -22,8 +23,9 @@ const myCustomLightTheme = {
   },
 };
 
+// Custom DarkTheme
 const myCustomDarkTheme = {
-  dark: true, // Set dark to true for a dark theme
+  dark: true,
   colors: {
     text: "#faf9f5",
     background: "#212121",

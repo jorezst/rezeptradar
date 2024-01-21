@@ -1,6 +1,7 @@
 <template>
   <v-row>
     <v-col>
+      <!-- Main information Display -->
       <v-img
         :src="recipe.mainImage"
         aspect-ratio="1.5"

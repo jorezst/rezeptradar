@@ -1,5 +1,6 @@
 <template>
   <v-container v-if="recipe">
+    <!-- Implement all the Components for the Detailed Recipe View -->
     <MainInfo :recipe-name="recipeName" />
     <IngredientInfo :recipe="recipe" />
     <UtensilInfo :recipe="recipe" />
@@ -30,6 +31,7 @@ export default {
     const router = useRouter();
     const recipesStore = useRecipesStore();
 
+    // Logic to navigate to the Recipe Steps site
     const goToRecipeSteps = (recipeName) => {
       router.push(`/rezept-schritte/${recipeName}`);
     };

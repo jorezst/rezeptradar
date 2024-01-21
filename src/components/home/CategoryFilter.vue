@@ -1,4 +1,5 @@
 <template>
+  <!-- Category Selector Menu -->
   <v-select
     chips=""
     rounded
@@ -22,7 +23,7 @@ export default {
     const { categories } = useCategoriesStore();
     const selectedCategories = ref();
 
-    // Watch the selectedCategory for changes
+    // Watch the selectedCategory for changes and emit them to HomeView
     watch(selectedCategories, (newValue) => {
       emit("update-category", newValue);
     });

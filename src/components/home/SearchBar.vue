@@ -1,4 +1,5 @@
 <template>
+  <!-- Search Bar Field -->
   <v-text-field
     class="search-bar"
     bg-color="background"
@@ -21,7 +22,7 @@ export default {
   setup(props, { emit }) {
     const searchQuery = ref();
 
-    // Updated method to handle input and emit the event
+    // method to handle input and emit the event
     const handleInput = (event) => {
       // Extracting the value from the event object
       const value = event.target.value;

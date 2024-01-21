@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <!-- Handles the Bottom Navigation of the App -->
     <v-bottom-navigation :elevation="24" color="primary" grow>
       <v-btn class="nav-item" value="home" to="/">
         <v-icon>mdi-home</v-icon>
