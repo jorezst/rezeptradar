@@ -96,6 +96,28 @@
         </v-card-item>
       </v-card>
     </v-form>
+    <v-list dense>
+      <v-subheader>Current Ingredients</v-subheader>
+      <v-list-item-group>
+        <v-list-item
+          v-for="(ingredient, index) in recipe.ingredients"
+          :key="index"
+        >
+          <v-list-item-content>
+            <v-list-item-title
+              >{{ ingredient.name }} - {{ ingredient.amount }}
+              {{ ingredient.unit }}</v-list-item-title
+            >
+          </v-list-item-content>
+          <v-list-item-action>
+            <v-btn icon @click="removeIngredient(index)">
+              <v-icon>mdi-delete</v-icon>
+            </v-btn>
+          </v-list-item-action>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+
     <v-form ref="utensilForm">
       <v-card variant="tonal" class="rounded-xl mb-4">
         <v-card-title class="mb-1">Utensilien</v-card-title>
