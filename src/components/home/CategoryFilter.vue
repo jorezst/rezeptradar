@@ -1,17 +1,14 @@
 <template>
-  <v-row>
-    <v-col>
-      <v-select
-        rounded
-        color="primary"
-        variant="outlined"
-        :items="categories"
-        label="Kategorie auswählen"
-        v-model="selectedCategory"
-        clearable
-      ></v-select>
-    </v-col>
-  </v-row>
+  <v-select
+    rounded
+    bg-color="background"
+    color="primary"
+    variant="outlined"
+    :items="categories"
+    label="Kategorie"
+    v-model="selectedCategories"
+    multiple
+  ></v-select>
 </template>
 
 <script>
@@ -22,16 +19,16 @@ export default {
   emits: ["update-category"],
   setup(props, { emit }) {
     const { categories } = useCategoriesStore();
-    const selectedCategory = ref("");
+    const selectedCategories = ref();
 
     // Watch the selectedCategory for changes
-    watch(selectedCategory, (newValue) => {
+    watch(selectedCategories, (newValue) => {
       emit("update-category", newValue);
     });
 
     return {
       categories,
-      selectedCategory,
+      selectedCategories,
     };
   },
 };

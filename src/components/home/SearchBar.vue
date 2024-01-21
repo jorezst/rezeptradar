@@ -1,18 +1,15 @@
 <template>
-  <v-row class="search-bar">
-    <v-col>
-      <v-text-field
-        bg-color="background"
-        color="primary"
-        variant="outlined"
-        rounded
-        :value="searchQuery"
-        label="Rezept suchen"
-        prepend-inner-icon="mdi-magnify"
-        @input="handleInput"
-      ></v-text-field>
-    </v-col>
-  </v-row>
+  <v-text-field
+    class="search-bar"
+    bg-color="background"
+    color="primary"
+    variant="outlined"
+    rounded
+    :value="searchQuery"
+    label="Suchen"
+    prepend-inner-icon="mdi-magnify"
+    @input="handleInput"
+  ></v-text-field>
 </template>
 
 <script>
@@ -22,7 +19,7 @@ export default {
   name: "SearchBar",
   emits: ["update-search"],
   setup(props, { emit }) {
-    const searchQuery = ref("");
+    const searchQuery = ref();
 
     // Updated method to handle input and emit the event
     const handleInput = (event) => {
@@ -36,11 +33,3 @@ export default {
   },
 };
 </script>
-
-<style>
-.search-bar {
-  position: sticky;
-  top: 58px;
-  z-index: 1000; /* Ensures the search bar stays on top of other content */
-}
-</style>

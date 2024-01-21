@@ -41,7 +41,7 @@ export default {
   name: "RecipeGrid",
   props: {
     searchQuery: String,
-    selectedCategory: String,
+    selectedCategories: Array,
   },
   setup(props) {
     const recipesStore = useRecipesStore();
@@ -57,9 +57,11 @@ export default {
         );
       }
       // Filter based on selected category
-      if (props.selectedCategory) {
+      if (props.selectedCategories && props.selectedCategories.length) {
         result = result.filter((recipe) =>
-          recipe.categories.includes(props.selectedCategory)
+          recipe.categories.some((category) =>
+            props.selectedCategories.includes(category)
+          )
         );
       }
       return result;

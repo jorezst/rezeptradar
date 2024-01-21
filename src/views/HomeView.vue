@@ -1,10 +1,18 @@
 <template>
   <v-container>
-    <SearchBar @update-search="handleSearch"></SearchBar>
-    <CategoryFilter @update-category="handleCategoryUpdate"></CategoryFilter>
+    <v-row class="sticky-nav">
+      <v-col>
+        <SearchBar @update-search="handleSearch"></SearchBar>
+      </v-col>
+      <v-col>
+        <CategoryFilter
+          @update-category="handleCategoryUpdate"
+        ></CategoryFilter>
+      </v-col>
+    </v-row>
     <RecipeGrid
       :search-query="searchQuery"
-      :selected-category="selectedCategory"
+      :selected-categories="selectedCategories"
     ></RecipeGrid>
   </v-container>
 </template>
@@ -25,23 +33,31 @@ export default {
     RecipeGrid,
   },
   setup() {
-    const searchQuery = ref("");
-    const selectedCategory = ref("");
+    const searchQuery = ref();
+    const selectedCategories = ref();
 
     const handleSearch = (newQuery) => {
       searchQuery.value = newQuery;
     };
 
-    const handleCategoryUpdate = (category) => {
-      selectedCategory.value = category;
+    const handleCategoryUpdate = (categories) => {
+      selectedCategories.value = categories;
     };
 
     return {
       searchQuery,
       handleSearch,
       handleCategoryUpdate,
-      selectedCategory,
+      selectedCategories,
     };
   },
 };
 </script>
+
+<style>
+.sticky-nav {
+  position: sticky;
+  top: 60px;
+  z-index: 1000; /* Ensures the search bar stays on top of other content */
+}
+</style>
