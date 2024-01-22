@@ -20,7 +20,7 @@
 
     <!-- Add new Categories -->
     <v-card variant="tonal" class="mb-4 rounded-xl">
-      <v-card-title>Kategorien hinzufügen</v-card-title>
+      <v-card-title>Kategorie hinzufügen</v-card-title>
       <v-card-item>
         <v-row>
           <v-col>
@@ -29,12 +29,12 @@
                 rounded
                 variant="outlined"
                 v-model="newCategory"
-                label="New Category"
+                label="Neue Kategorie"
                 outlined
                 required
               ></v-text-field>
               <v-btn class="rounded-xl mb-1" block type="submit" color="primary"
-                >Kategorien hinzufügen</v-btn
+                >Kategorie hinzufügen</v-btn
               >
             </v-form>
           </v-col>
